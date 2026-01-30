@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbg6ind5qhoef"]
 
 [ext_resource type="Script" uid="uid://c6cfronwp0ni3" path="res://SuspectObjects/body.gd" id="1_owrkx"]
-[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://icon.svg" id="1_qc14p"]
+[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="1_qc14p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owrkx"]
 size = Vector2(128, 128)
@@ -9,11 +9,12 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxbx3"]
 size = Vector2(128, 104)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rs05b"]
+
 [node name="Body" type="RigidBody2D" unique_id=1811897074]
 collision_layer = 4
-collision_mask = 16
+collision_mask = 48
 input_pickable = true
-gravity_scale = 0.0
 script = ExtResource("1_owrkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927350012]
@@ -27,3 +28,11 @@ texture = ExtResource("1_qc14p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDragArea" unique_id=1196075669]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_dxbx3")
+
+[node name="DeadBodyArea" type="Area2D" parent="." unique_id=165592094]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadBodyArea" unique_id=860009793]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_rs05b")

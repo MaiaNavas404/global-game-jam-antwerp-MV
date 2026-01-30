@@ -13,7 +13,7 @@ config_version=5
 config/name="GGJ-Antwerp"
 run/main_scene="uid://65q44q0dbmqb"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://CleaningTools/icon.svg"
 
 [autoload]
 
@@ -23,6 +23,11 @@ globals="*uid://3t1h0aeqo3pe"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[global_group]
+
+Disabled=""
+Active=""
 
 [input]
 
@@ -39,6 +44,7 @@ click={
 2d_physics/layer_3="Body"
 2d_physics/layer_4="InteractionArea"
 2d_physics/layer_5="HidingArea"
+2d_physics/layer_6="FloorWalls"
 
 [physics]
 

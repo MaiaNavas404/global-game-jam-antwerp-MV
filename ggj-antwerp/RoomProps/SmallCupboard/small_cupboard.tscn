@@ -1,21 +1,48 @@
 [gd_scene format=3 uid="uid://cpvhaerxj7c5v"]
 
-[ext_resource type="Script" uid="uid://c2m0dgbas35ak" path="res://RoomProps/roomprops.gd" id="1_2t274"]
-[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://icon.svg" id="2_4isx2"]
+[ext_resource type="Script" uid="uid://5ubqkdwll7lc" path="res://RoomProps/hidableprops.gd" id="1_2t274"]
+[ext_resource type="Texture2D" uid="uid://bwin1fw4spsh5" path="res://RoomProps/SmallCupboard/small_cupboard_open.PNG" id="2_4isx2"]
+[ext_resource type="Texture2D" uid="uid://b2ljq8vyvc5oy" path="res://RoomProps/SmallCupboard/small_cupboard_door_front.PNG" id="3_fsbb7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s5yi"]
+size = Vector2(400, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsbb7"]
-size = Vector2(154, 138)
+size = Vector2(408, 416)
 
-[node name="SmallCupboard" type="Node2D" unique_id=152157778 node_paths=PackedStringArray("clickable_area")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcs3w"]
+size = Vector2(824, 416)
+
+[node name="SmallCupboard" type="Node2D" unique_id=152157778 node_paths=PackedStringArray("hiding_area", "clickable_area")]
 script = ExtResource("1_2t274")
-clickable_area = NodePath("Area2D")
+hiding_area = NodePath("HidableArea")
+clickable_area = NodePath("ClickableArea")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1792586424]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=638227060]
 texture = ExtResource("2_4isx2")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=170944405]
+[node name="DisabledSprite" type="Sprite2D" parent="." unique_id=1792586424 groups=["Disabled"]]
+texture = ExtResource("3_fsbb7")
+
+[node name="ActiveSprite" type="Sprite2D" parent="." unique_id=401439450 groups=["Active"]]
+position = Vector2(408, 0)
+texture = ExtResource("2_4isx2")
+
+[node name="HidableArea" type="Area2D" parent="." unique_id=518465086]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HidableArea" unique_id=704903901]
+shape = SubResource("RectangleShape2D_6s5yi")
+
+[node name="ClickableArea" type="Area2D" parent="." unique_id=170944405]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2067615308]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea" unique_id=2067615308 groups=["Disabled"]]
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_fsbb7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ClickableArea" unique_id=1933441644 groups=["Active"]]
+position = Vector2(204, 0)
+shape = SubResource("RectangleShape2D_xcs3w")

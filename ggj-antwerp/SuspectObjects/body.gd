@@ -2,7 +2,13 @@ extends RigidBody2D
 
 @onready var mouse_drag_area := $MouseDragArea
 var draggable := false
-var dragging := false
+var dragging := false:
+	set(value):
+		if value:
+			freeze = true
+		else:
+			freeze = false
+		dragging = value
 var mouse_offset := Vector2.ZERO
 
 func _ready():

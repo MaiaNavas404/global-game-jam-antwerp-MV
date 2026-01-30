@@ -24,6 +24,7 @@ func _ready():
 func on_mouse_interact(viewport: Node, event: InputEvent, shape_idx: int):
 	if event.is_pressed():
 		cycle_current_state()
+		
 
 
 func cycle_current_state():
