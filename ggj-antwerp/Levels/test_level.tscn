@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://65q44q0dbmqb"]
+
+[ext_resource type="PackedScene" uid="uid://bguakiop7e1g6" path="res://RoomProps/cupboard.tscn" id="1_ormqy"]
+
+[node name="TestLevel" type="Node2D" unique_id=954476652]
+
+[node name="Cupboard" parent="." unique_id=557903057 instance=ExtResource("1_ormqy")]
+position = Vector2(488, 304)

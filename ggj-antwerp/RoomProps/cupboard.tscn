@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bguakiop7e1g6"]
+
+[ext_resource type="Script" uid="uid://5ubqkdwll7lc" path="res://RoomProps/cupboard.gd" id="1_jem14"]
+[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://icon.svg" id="2_e0lng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckf3m"]
+size = Vector2(128, 304)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jem14"]
+size = Vector2(58, 186)
+
+[node name="Cupboard" type="Node2D" unique_id=557903057 node_paths=PackedStringArray("hiding_area", "clickable_area")]
+script = ExtResource("1_jem14")
+hiding_area = NodePath("HidingArea")
+clickable_area = NodePath("ClickingArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=95659549]
+position = Vector2(0, 88)
+scale = Vector2(1, 2.375)
+texture = ExtResource("2_e0lng")
+
+[node name="ClickingArea" type="Area2D" parent="." unique_id=142178035]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickingArea" unique_id=12285542]
+position = Vector2(0, 88)
+shape = SubResource("RectangleShape2D_ckf3m")
+
+[node name="HidingArea" type="Area2D" parent="." unique_id=596665258]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HidingArea" unique_id=1911059078]
+position = Vector2(29, 144)
+shape = SubResource("RectangleShape2D_jem14")

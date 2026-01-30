@@ -11,8 +11,22 @@ config_version=5
 [application]
 
 config/name="GGJ-Antwerp"
+run/main_scene="uid://65q44q0dbmqb"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[layer_names]
+
+2d_physics/layer_1="CleaningObject"
+2d_physics/layer_2="Blood"
+2d_physics/layer_3="Body"
+2d_physics/layer_4="InteractionArea"
+2d_physics/layer_5="HidingArea"
 
 [physics]
 
