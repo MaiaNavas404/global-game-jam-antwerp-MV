@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bguakiop7e1g6"]
+
+[ext_resource type="Texture2D" uid="uid://bhmi10psch208" path="res://RoomProps/Cupboard/cupboard_open.PNG" id="1_1hxk6"]
+[ext_resource type="Script" uid="uid://5ubqkdwll7lc" path="res://RoomProps/Cupboard/cupboard.gd" id="1_jem14"]
+[ext_resource type="Texture2D" uid="uid://6ivcxx8cs0j5" path="res://RoomProps/Cupboard/cupboard_door_front.PNG" id="3_hi20d"]
+[ext_resource type="Texture2D" uid="uid://dbt42rn482q3e" path="res://RoomProps/Cupboard/cupboard_door_back.PNG" id="4_bkvww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au1kp"]
+size = Vector2(277, 725)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hxk6"]
+size = Vector2(296, 768)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jem14"]
+size = Vector2(280, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckf3m"]
+size = Vector2(296, 768)
+
+[node name="Cupboard" type="Node2D" unique_id=557903057]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=95659549]
+texture = ExtResource("1_1hxk6")
+
+[node name="CupboardL" type="Node2D" parent="." unique_id=969730146 node_paths=PackedStringArray("hiding_area", "closed_sprite", "open_sprite", "clickable_area")]
+script = ExtResource("1_jem14")
+hiding_area = NodePath("HidingArea")
+closed_sprite = NodePath("ClosedSprite")
+open_sprite = NodePath("OpenSprite")
+clickable_area = NodePath("ClickingArea")
+
+[node name="ClosedSprite" type="Sprite2D" parent="CupboardL" unique_id=2140428035]
+position = Vector2(152, 0)
+texture = ExtResource("3_hi20d")
+flip_h = true
+
+[node name="OpenSprite" type="Sprite2D" parent="CupboardL" unique_id=753941713]
+position = Vector2(424, 0)
+texture = ExtResource("4_bkvww")
+
+[node name="HidingArea" type="Area2D" parent="CupboardL" unique_id=596665258]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CupboardL/HidingArea" unique_id=1911059078]
+position = Vector2(156, 8)
+shape = SubResource("RectangleShape2D_au1kp")
+
+[node name="ClickingArea" type="Area2D" parent="CupboardL" unique_id=142178035]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CupboardL/ClickingArea" unique_id=12285542]
+position = Vector2(156, 0)
+shape = SubResource("RectangleShape2D_1hxk6")
+
+[node name="CupboardR" type="Node2D" parent="." unique_id=1000286898 node_paths=PackedStringArray("hiding_area", "closed_sprite", "open_sprite", "clickable_area")]
+position = Vector2(-304, 0)
+script = ExtResource("1_jem14")
+hiding_area = NodePath("HidingArea")
+closed_sprite = NodePath("ClosedSprite")
+open_sprite = NodePath("OpenSprite")
+clickable_area = NodePath("ClickingArea")
+
+[node name="ClosedSprite" type="Sprite2D" parent="CupboardR" unique_id=1980687473]
+position = Vector2(152, 0)
+texture = ExtResource("3_hi20d")
+
+[node name="OpenSprite" type="Sprite2D" parent="CupboardR" unique_id=1780112543]
+position = Vector2(-112, 0)
+texture = ExtResource("4_bkvww")
+flip_h = true
+
+[node name="HidingArea" type="Area2D" parent="CupboardR" unique_id=913498849]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CupboardR/HidingArea" unique_id=1644976986]
+position = Vector2(156, 8)
+shape = SubResource("RectangleShape2D_jem14")
+
+[node name="ClickingArea" type="Area2D" parent="CupboardR" unique_id=1465312561]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CupboardR/ClickingArea" unique_id=853133949]
+position = Vector2(156, 0)
+shape = SubResource("RectangleShape2D_ckf3m")

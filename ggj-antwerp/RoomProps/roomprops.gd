@@ -19,7 +19,7 @@ var current_state : States = States.DISABLED:
 func _ready():
 	clickable_area.input_event.connect(on_mouse_interact)
 	current_state = States.DISABLED
-
+	
 
 func on_mouse_interact(viewport: Node, event: InputEvent, shape_idx: int):
 	if event.is_pressed():
@@ -32,7 +32,7 @@ func cycle_current_state():
 		current_state = 0
 
 func on_state_disabled():
-	$Sprite2D.modulate = Color.RED
+	pass
 
 func on_state_active():
-	$Sprite2D.modulate = Color.GREEN
+	pass
