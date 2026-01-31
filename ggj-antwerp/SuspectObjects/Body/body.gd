@@ -66,7 +66,7 @@ func _ready():
 			
 
 func _physics_process(delta: float) -> void:
-	print(draggable, dragging)
+	
 	if Input.is_action_just_pressed("click") and draggable and globals.current_item != globals.Items.SPONGE:
 		dragging = true
 		

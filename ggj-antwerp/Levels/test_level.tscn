@@ -8,14 +8,20 @@
 [ext_resource type="Script" uid="uid://e1m7euobwhi0" path="res://Levels/camera.gd" id="6_pvdih"]
 [ext_resource type="PackedScene" uid="uid://bbklm8wlq8pm5" path="res://RoomProps/Lamp/lamp.tscn" id="6_ub4j8"]
 [ext_resource type="Texture2D" uid="uid://dyhdq4yf5c4bx" path="res://RoomProps/Bed/bed.PNG" id="8_7e6fp"]
-[ext_resource type="PackedScene" uid="uid://ch4fhu50xyyeq" path="res://SuspectObjects/Blood/blood_stain.tscn" id="9_tc6tp"]
 [ext_resource type="Script" uid="uid://cnl6tm1uyd2ef" path="res://Levels/ui.gd" id="10_dkv23"]
 [ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
 [ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
 [ext_resource type="Texture2D" uid="uid://n26t4i0pqk5p" path="res://UI/phone_ringing_spritesheet.png" id="11_x458k"]
+[ext_resource type="PackedScene" uid="uid://bitavwau88anq" path="res://SuspectObjects/Blood/blood_spawner.tscn" id="14_x458k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkv23"]
+size = Vector2(24, 1266)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x458k"]
+size = Vector2(24, 1266)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lrol0"]
 atlas = ExtResource("11_x458k")
@@ -163,6 +169,18 @@ collision_mask = 4
 position = Vector2(1351, 0)
 shape = SubResource("RectangleShape2D_i4ak4")
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground" unique_id=411038745]
+position = Vector2(1328, -1080)
+shape = SubResource("RectangleShape2D_i4ak4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground" unique_id=1569113393]
+position = Vector2(2436, -535)
+shape = SubResource("RectangleShape2D_dkv23")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=560233921]
+position = Vector2(-16, -584)
+shape = SubResource("RectangleShape2D_x458k")
+
 [node name="Lamp" parent="." unique_id=87523742 instance=ExtResource("6_ub4j8")]
 position = Vector2(1504, 522)
 
@@ -188,9 +206,6 @@ position = Vector2(1856, 0)
 [node name="Bed" type="Sprite2D" parent="." unique_id=916855565]
 position = Vector2(3040, 760)
 texture = ExtResource("8_7e6fp")
-
-[node name="BloodStain" parent="." unique_id=519172962 instance=ExtResource("9_tc6tp")]
-position = Vector2(1672, 248)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649908782]
 script = ExtResource("10_dkv23")
@@ -251,6 +266,19 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
 
 [node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
+
+[node name="BloodSpawner" parent="." unique_id=1721568591 node_paths=PackedStringArray("wall_polygons", "floor_polygons") instance=ExtResource("14_x458k")]
+wall_polygons = [NodePath("Polygon2D"), NodePath("Polygon2D3")]
+floor_polygons = [NodePath("Polygon2D2")]
+
+[node name="Polygon2D" type="Polygon2D" parent="BloodSpawner" unique_id=1547162698]
+polygon = PackedVector2Array(136, 56, 1024, 48, 1024, 272, 144, 264)
+
+[node name="Polygon2D3" type="Polygon2D" parent="BloodSpawner" unique_id=1023494314]
+polygon = PackedVector2Array(1336, 56, 2336, 56, 2336, 416, 1352, 408)
+
+[node name="Polygon2D2" type="Polygon2D" parent="BloodSpawner" unique_id=1626194439]
+polygon = PackedVector2Array(1696, 816, 2400, 808, 2400, 1024, 1688, 1032)
 
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]

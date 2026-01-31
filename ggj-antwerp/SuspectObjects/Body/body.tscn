@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cbg6ind5qhoef"]
 
 [ext_resource type="Script" uid="uid://c6cfronwp0ni3" path="res://SuspectObjects/Body/body.gd" id="1_owrkx"]
-[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="1_qc14p"]
+[ext_resource type="Texture2D" uid="uid://bqr18plsl62dx" path="res://SuspectObjects/Body/body_head.PNG" id="2_23s0c"]
+[ext_resource type="Texture2D" uid="uid://rpkxxxfnyxji" path="res://SuspectObjects/Body/body_torso.PNG" id="3_uqjs3"]
+[ext_resource type="Texture2D" uid="uid://b2e0hus8kxhh" path="res://SuspectObjects/Body/body_arm.PNG" id="4_an7mi"]
+[ext_resource type="Texture2D" uid="uid://b408r3f3e0w06" path="res://SuspectObjects/Body/body_leg.PNG" id="5_ywd1n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owrkx"]
 size = Vector2(128, 128)
@@ -15,7 +18,7 @@ size = Vector2(144, 136)
 size = Vector2(128, 232)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxbx3"]
-size = Vector2(176, 254)
+size = Vector2(137, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m4yc"]
 size = Vector2(152, 40)
@@ -44,13 +47,13 @@ height = 174.0
 script = ExtResource("1_owrkx")
 
 [node name="Head" type="RigidBody2D" parent="." unique_id=1584142434]
-position = Vector2(0, -448)
+position = Vector2(0, -420)
 collision_layer = 4
 collision_mask = 32
 can_sleep = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Head" unique_id=394085064]
-texture = ExtResource("1_qc14p")
+texture = ExtResource("2_23s0c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head" unique_id=880768615]
 shape = SubResource("RectangleShape2D_owrkx")
@@ -79,8 +82,7 @@ collision_layer = 4
 collision_mask = 48
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso" unique_id=1229700359]
-scale = Vector2(1, 1.8125)
-texture = ExtResource("1_qc14p")
+texture = ExtResource("3_uqjs3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torso" unique_id=1982603219]
 shape = SubResource("RectangleShape2D_4ycrf")
@@ -103,12 +105,12 @@ collision_mask = 16
 position = Vector2(-48, -368)
 shape = SubResource("RectangleShape2D_rs05b")
 
-[node name="MouseDragArea2" type="Area2D" parent="Torso" unique_id=928624668 groups=["MouseArea"]]
+[node name="MouseDragArea2" type="Area2D" parent="Torso" unique_id=928624668]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/MouseDragArea2" unique_id=1543419676]
-position = Vector2(0, 1)
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_dxbx3")
 
 [node name="ArmL" type="RigidBody2D" parent="." unique_id=690919558]
@@ -117,8 +119,8 @@ collision_layer = 4
 collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="ArmL" unique_id=2048832470]
-scale = Vector2(1.125, 0.3124999)
-texture = ExtResource("1_qc14p")
+rotation = 1.3089969
+texture = ExtResource("4_an7mi")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ArmL" unique_id=1574412821]
 shape = SubResource("RectangleShape2D_6m4yc")
@@ -138,6 +140,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArmL/MouseDragArea2" unique_id=1835676902]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_23s0c")
 
 [node name="ArmR" type="RigidBody2D" parent="." unique_id=1724598728]
@@ -146,8 +149,9 @@ collision_layer = 4
 collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="ArmR" unique_id=1207610087]
-scale = Vector2(1.125, 0.3124999)
-texture = ExtResource("1_qc14p")
+rotation = -1.3089969
+texture = ExtResource("4_an7mi")
+flip_h = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ArmR" unique_id=1971247141]
 shape = SubResource("RectangleShape2D_ihaww")
@@ -167,6 +171,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArmR/MouseDragArea2" unique_id=913549635]
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_q3fw5")
 
 [node name="LegL" type="RigidBody2D" parent="." unique_id=1263340492]
@@ -175,10 +180,10 @@ collision_layer = 4
 collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="LegL" unique_id=125181928]
-position = Vector2(101.00001, -331)
-rotation = -1.5707964
-scale = Vector2(1.125, 0.3124999)
-texture = ExtResource("1_qc14p")
+position = Vector2(105.999985, -346.99997)
+rotation = 0.10358937
+texture = ExtResource("5_ywd1n")
+flip_h = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LegL" unique_id=1049101605]
 position = Vector2(101, -331)
@@ -198,10 +203,9 @@ collision_layer = 4
 collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="LegR" unique_id=187710978]
-position = Vector2(101.00001, -331)
-rotation = -1.5707964
-scale = Vector2(1.125, 0.3124999)
-texture = ExtResource("1_qc14p")
+position = Vector2(99.99999, -347.00003)
+rotation = -0.13520205
+texture = ExtResource("5_ywd1n")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LegR" unique_id=282975581]
 position = Vector2(101, -331)
