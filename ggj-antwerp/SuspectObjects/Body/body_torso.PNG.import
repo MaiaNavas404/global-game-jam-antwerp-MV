@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brpm2cow3xjgy"
-path="res://.godot/imported/window_spritesheet.png-b0cf015fd9f9517f6b85db04334ee0c7.ctex"
+uid="uid://rpkxxxfnyxji"
+path="res://.godot/imported/body_torso.PNG-eb41511a47ad84ef47308a7c1b5b433c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RoomProps/Window/window_spritesheet.png"
-dest_files=["res://.godot/imported/window_spritesheet.png-b0cf015fd9f9517f6b85db04334ee0c7.ctex"]
+source_file="res://SuspectObjects/Body/body_torso.PNG"
+dest_files=["res://.godot/imported/body_torso.PNG-eb41511a47ad84ef47308a7c1b5b433c.ctex"]
 
 [params]
 
