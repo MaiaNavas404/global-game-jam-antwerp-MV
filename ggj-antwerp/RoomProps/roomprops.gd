@@ -40,7 +40,7 @@ func _ready():
 
 
 func on_mouse_interact(viewport: Node, event: InputEvent, shape_idx: int):
-	if event.is_pressed():
+	if event.is_pressed() and globals.current_item == globals.Items.NONE:
 		cycle_current_state()
 		
 		
