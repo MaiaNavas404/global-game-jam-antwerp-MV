@@ -6,8 +6,13 @@ var active_sprite : Sprite2D
 var disabled_sprite : Sprite2D
 var active_clicking_collision : CollisionShape2D
 var disabled_clicking_collision : CollisionShape2D
-var hidable := false
-
+var hidable := false:
+	set(value):
+		if value:
+			clickable_area.z_index = 0
+		else:
+			clickable_area.z_index = 1
+		hidable = value
 func _ready():
 	
 	for child in get_children():
@@ -24,6 +29,7 @@ func _ready():
 					disabled_clicking_collision = collisionshape
 	super._ready()
 	disabled_sprite.z_index = 1
+	clickable_area.z_index = 1
 	#hiding_area.area_entered.connect(on_dead_body_entered)
 	on_state_disabled()
 
@@ -31,8 +37,8 @@ func _physics_process(delta: float) -> void:
 	if hidable:
 		var dead_bodies = hiding_area.get_overlapping_bodies()
 		for dead_body in dead_bodies:
-			if dead_body.overlapping_area_count >= dead_body.total_area_count and !dead_body.is_hidden:
-				hide_dead_body(dead_body)
+			if dead_body.get_parent().overlapping_area_count >= dead_body.get_parent().total_area_count and !dead_body.get_parent().is_hidden:
+				hide_dead_body(dead_body.get_parent())
 				
 
 func on_state_disabled():
@@ -52,6 +58,8 @@ func set_object_state_active(state : bool):
 	disabled_clicking_collision.disabled = state
 	active_clicking_collision.disabled = !state
 
-func hide_dead_body(body : RigidBody2D):
-	body.freeze = true
+func hide_dead_body(body):
+	for part in body.body_parts:
+		part.freeze = true
+	
 	body.is_hidden = true

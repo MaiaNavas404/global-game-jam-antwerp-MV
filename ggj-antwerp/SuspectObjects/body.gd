@@ -15,12 +15,13 @@ var dragging := false:
 	set(value):
 		if value:
 			for part in body_parts:
+				part.gravity_scale = 0
 				part.freeze = true
 				
 		elif !is_hidden:
 			for part in body_parts:
+				part.gravity_scale = 1
 				part.freeze = false
-				
 		dragging = value
 
 @onready var torso := $Torso
@@ -34,28 +35,36 @@ var velocity = Vector2.ZERO
 func _ready():
 	mouse_drag_area.mouse_entered.connect(_on_mouse_entered)
 	mouse_drag_area.mouse_exited.connect(_on_mouse_exited)
-	for area in $HideCheckAreas.get_children():
-		area.area_entered.connect(on_dead_body_area_entered)
-		area.area_exited.connect(on_dead_body_area_exited)
-		total_area_count += 1
 	z_index = 2
 	
 	for child in get_children():
 		if child is RigidBody2D:
 			body_parts.append(child)
 			body_part_offsets.append(child.position - torso.position )
+	
+	for part in body_parts:
+		
+		for child in part.get_children():
+			if child.is_in_group("HideAreaCheck"):
+				var area = child
+				area.area_entered.connect(on_dead_body_area_entered)
+				area.area_exited.connect(on_dead_body_area_exited)
+				total_area_count += 1
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("click") and draggable:
 		dragging = true
 		mouse_offset = torso.position - get_global_mouse_position()
-	if dragging:
+	if dragging and torso.position.distance_to(get_global_mouse_position() + mouse_offset) > 50:
 		var direction = torso.position.direction_to(get_global_mouse_position() + mouse_offset)
+		#torso.move_and_collide(direction * 3000.0 * delta)
 		for i in len(body_parts):
-			body_parts[i].move_and_collide(direction * 2000.0 * delta)
+			body_parts[i].move_and_collide(direction * 3000.0 * delta)
 	if Input.is_action_just_released("click"):
 		dragging = false
 	if overlapping_area_count < total_area_count:
 		is_hidden = false
+
 	
 func on_dead_body_area_entered(area : Area2D):
 	overlapping_area_count += 1
