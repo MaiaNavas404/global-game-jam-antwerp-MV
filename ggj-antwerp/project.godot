@@ -45,6 +45,7 @@ click={
 2d_physics/layer_4="InteractionArea"
 2d_physics/layer_5="HidingArea"
 2d_physics/layer_6="FloorWalls"
+2d_physics/layer_7="Sponge"
 
 [physics]
 

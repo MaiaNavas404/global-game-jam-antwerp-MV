@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bbklm8wlq8pm5"]
+
+[ext_resource type="Script" uid="uid://c2m0dgbas35ak" path="res://RoomProps/roomprops.gd" id="1_16v5d"]
+[ext_resource type="Texture2D" uid="uid://ls2ydv2e5kru" path="res://RoomProps/Lamp/lamp_off.PNG" id="2_vj7tg"]
+[ext_resource type="Texture2D" uid="uid://cvopfohlebi7d" path="res://RoomProps/Lamp/lamp_on.PNG" id="3_ch4j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qked"]
+size = Vector2(176, 344)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5amlu"]
+size = Vector2(176, 344)
+
+[node name="Lamp" type="Node2D" unique_id=87523742 node_paths=PackedStringArray("clickable_area")]
+script = ExtResource("1_16v5d")
+clickable_area = NodePath("ClickableArea")
+
+[node name="ClickableArea" type="Area2D" parent="." unique_id=1193140036]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea" unique_id=1501433203 groups=["Disabled"]]
+position = Vector2(-48, -36)
+shape = SubResource("RectangleShape2D_3qked")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ClickableArea" unique_id=2030545396 groups=["Active"]]
+position = Vector2(-48, -36)
+shape = SubResource("RectangleShape2D_5amlu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=268481829 groups=["Disabled"]]
+texture = ExtResource("2_vj7tg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=971810457 groups=["Active"]]
+texture = ExtResource("3_ch4j0")

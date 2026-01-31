@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ch4fhu50xyyeq"]
+
+[ext_resource type="Script" uid="uid://bk72b3othg0so" path="res://SuspectObjects/Blood/blood_stain.gd" id="1_78afr"]
+[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="1_fuya2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78afr"]
+radius = 32.0
+
+[node name="BloodStain" type="Node2D" unique_id=519172962]
+script = ExtResource("1_78afr")
+STAIN_CAPACITY = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=9684654]
+modulate = Color(1, 0.39607844, 0.34901962, 1)
+texture = ExtResource("1_fuya2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1436659175]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1712758768]
+shape = SubResource("CircleShape2D_78afr")
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

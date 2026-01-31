@@ -2,14 +2,25 @@
 
 [ext_resource type="Script" uid="uid://yqfc3oj0n4dr" path="res://Levels/level.gd" id="1_4k50d"]
 [ext_resource type="PackedScene" uid="uid://bguakiop7e1g6" path="res://RoomProps/Cupboard/cupboard.tscn" id="1_ormqy"]
-[ext_resource type="PackedScene" uid="uid://cbg6ind5qhoef" path="res://SuspectObjects/body.tscn" id="2_00vsl"]
+[ext_resource type="PackedScene" uid="uid://cbg6ind5qhoef" path="res://SuspectObjects/Body/body.tscn" id="2_00vsl"]
+[ext_resource type="Texture2D" uid="uid://b063ombnqrg16" path="res://Background/background_art.JPG" id="2_3158n"]
 [ext_resource type="PackedScene" uid="uid://cpvhaerxj7c5v" path="res://RoomProps/SmallCupboard/small_cupboard.tscn" id="4_i4ak4"]
+[ext_resource type="Script" uid="uid://e1m7euobwhi0" path="res://Levels/camera.gd" id="6_pvdih"]
+[ext_resource type="PackedScene" uid="uid://bbklm8wlq8pm5" path="res://RoomProps/Lamp/lamp.tscn" id="6_ub4j8"]
+[ext_resource type="Texture2D" uid="uid://dyhdq4yf5c4bx" path="res://RoomProps/Bed/bed.PNG" id="8_7e6fp"]
+[ext_resource type="PackedScene" uid="uid://ch4fhu50xyyeq" path="res://SuspectObjects/Blood/blood_stain.tscn" id="9_tc6tp"]
+[ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
 
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
+metadata/_edit_vertical_guides_ = [2432.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2096200054]
+texture = ExtResource("2_3158n")
+centered = false
 
 [node name="Cupboard" parent="." unique_id=557903057 instance=ExtResource("1_ormqy")]
 position = Vector2(704, 688)
@@ -23,12 +34,33 @@ collision_mask = 4
 position = Vector2(1351, 0)
 shape = SubResource("RectangleShape2D_i4ak4")
 
+[node name="Lamp" parent="." unique_id=87523742 instance=ExtResource("6_ub4j8")]
+position = Vector2(1504, 522)
+
 [node name="SmallCupboard" parent="." unique_id=152157778 instance=ExtResource("4_i4ak4")]
 position = Vector2(1408, 856)
 
 [node name="Body" parent="." unique_id=1811897074 instance=ExtResource("2_00vsl")]
 position = Vector2(472, 320)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=864356312]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
-zoom = Vector2(0.7, 0.7)
+script = ExtResource("6_pvdih")
+bounds = Vector2(0, 2432)
+left_pan_marker = NodePath("PanL")
+right_pan_marker = NodePath("PanR")
+
+[node name="PanL" type="Marker2D" parent="Camera2D" unique_id=1231657832]
+position = Vector2(64, 0)
+
+[node name="PanR" type="Marker2D" parent="Camera2D" unique_id=762008711]
+position = Vector2(1856, 0)
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=916855565]
+position = Vector2(3040, 760)
+texture = ExtResource("8_7e6fp")
+
+[node name="BloodStain" parent="." unique_id=519172962 instance=ExtResource("9_tc6tp")]
+position = Vector2(1672, 248)
+
+[node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]

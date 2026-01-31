@@ -44,6 +44,7 @@ position = Vector2(424, 0)
 texture = ExtResource("4_bkvww")
 
 [node name="HidingArea" type="Area2D" parent="CupboardL" unique_id=596665258]
+position = Vector2(-1, 0)
 collision_layer = 16
 collision_mask = 4
 
