@@ -18,5 +18,6 @@ input_pickable = false
 shape = SubResource("RectangleShape2D_fwbe1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=420220351]
+visible = false
 modulate = Color(0, 0.6179889, 0.35032612, 1)
 texture = ExtResource("1_2wety")

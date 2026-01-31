@@ -151,6 +151,7 @@ _data = {
 
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
+CURSOR_CLICK_DURATION = 0.1
 metadata/_edit_vertical_guides_ = [2432.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2096200054]
