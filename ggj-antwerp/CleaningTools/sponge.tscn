@@ -12,6 +12,7 @@ script = ExtResource("1_fwbe1")
 [node name="SpongeArea" type="Area2D" parent="." unique_id=1757914729]
 collision_layer = 64
 collision_mask = 2
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpongeArea" unique_id=161064105]
 shape = SubResource("RectangleShape2D_fwbe1")

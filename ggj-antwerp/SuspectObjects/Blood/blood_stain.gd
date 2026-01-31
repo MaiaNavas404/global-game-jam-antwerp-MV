@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print($Sprite2D.modulate.a)
+	pass
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:

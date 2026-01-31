@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dyhdq4yf5c4bx" path="res://RoomProps/Bed/bed.PNG" id="8_7e6fp"]
 [ext_resource type="PackedScene" uid="uid://ch4fhu50xyyeq" path="res://SuspectObjects/Blood/blood_stain.tscn" id="9_tc6tp"]
 [ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
+[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="11_k8b6b"]
+[ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
@@ -63,4 +65,58 @@ texture = ExtResource("8_7e6fp")
 [node name="BloodStain" parent="." unique_id=519172962 instance=ExtResource("9_tc6tp")]
 position = Vector2(1672, 248)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649908782]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=297298772]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=1718897906]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("11_k8b6b")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=235565738]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -793.0
+offset_top = -570.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("11_lx7qo")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/TextureRect" unique_id=347079497]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -552.0
+offset_right = -288.0
+offset_bottom = -320.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
+
+[connection signal="pressed" from="CanvasLayer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/TextureRect/Button" to="." method="_on_button_pressed"]
