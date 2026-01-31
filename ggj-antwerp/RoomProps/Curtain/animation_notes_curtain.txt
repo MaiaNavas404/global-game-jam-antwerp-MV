@@ -1,0 +1,4 @@
+Animation Notes for curtain
+15 FPS
+Hold first sprite for 2 frames, every other sprite is 1 frame.
+Last Sprite is what the closed curtain looks like after the animation has played
