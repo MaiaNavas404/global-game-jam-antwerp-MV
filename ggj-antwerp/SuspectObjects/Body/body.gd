@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		for i in len(body_parts):
 			body_parts[i].move_and_collide(direction * 3000.0 * distance / 300.0 * delta)
 			
-	if Input.is_action_just_released("click"):
+	if Input.is_action_just_released("click") and dragging:
 		dragging = false
 		current_dragged_body_part = null
 	if overlapping_area_count < total_area_count:

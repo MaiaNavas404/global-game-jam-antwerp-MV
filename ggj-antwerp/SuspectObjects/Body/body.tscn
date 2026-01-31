@@ -15,7 +15,7 @@ size = Vector2(128, 128)
 size = Vector2(144, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ycrf"]
-size = Vector2(128, 232)
+size = Vector2(126, 208)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxbx3"]
 size = Vector2(137, 224)
@@ -37,11 +37,14 @@ radius = 15.999998
 height = 160.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqjs3"]
-size = Vector2(56, 169.75)
+size = Vector2(76, 169.75)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxbx3"]
 radius = 15.0
 height = 174.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an7mi"]
+size = Vector2(73, 169.75)
 
 [node name="Body" type="Node2D" unique_id=289655189]
 script = ExtResource("1_owrkx")
@@ -85,6 +88,7 @@ collision_mask = 48
 texture = ExtResource("3_uqjs3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torso" unique_id=1982603219]
+position = Vector2(-1, 12)
 shape = SubResource("RectangleShape2D_4ycrf")
 
 [node name="DeadBodyArea2" type="Area2D" parent="Torso" unique_id=1393222579 groups=["HideAreaCheck"]]
@@ -105,7 +109,7 @@ collision_mask = 16
 position = Vector2(-48, -368)
 shape = SubResource("RectangleShape2D_rs05b")
 
-[node name="MouseDragArea2" type="Area2D" parent="Torso" unique_id=928624668]
+[node name="MouseDragArea2" type="Area2D" parent="Torso" unique_id=928624668 groups=["MouseArea"]]
 collision_layer = 8
 collision_mask = 0
 
@@ -195,6 +199,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LegL/MouseDragArea2" unique_id=985565887]
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_uqjs3")
 
 [node name="LegR" type="RigidBody2D" parent="." unique_id=74409102]
@@ -217,12 +222,13 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LegR/MouseDragArea2" unique_id=602355061]
-shape = SubResource("RectangleShape2D_uqjs3")
+position = Vector2(8.5, -5)
+shape = SubResource("RectangleShape2D_an7mi")
 
 [node name="PinJoints" type="Node2D" parent="." unique_id=516469386]
 
 [node name="PinJoint2D" type="PinJoint2D" parent="PinJoints" unique_id=750117865]
-position = Vector2(0, -380)
+position = Vector2(0, -360)
 node_a = NodePath("../../Head")
 node_b = NodePath("../../Torso")
 
@@ -237,11 +243,11 @@ node_a = NodePath("../../ArmR")
 node_b = NodePath("../../Torso")
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="PinJoints" unique_id=2064767995]
-position = Vector2(-40, -144)
+position = Vector2(-28, -173)
 node_a = NodePath("../../LegL")
 node_b = NodePath("../../Torso")
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="PinJoints" unique_id=765852778]
-position = Vector2(40, -144)
+position = Vector2(35, -173)
 node_a = NodePath("../../LegR")
 node_b = NodePath("../../Torso")
