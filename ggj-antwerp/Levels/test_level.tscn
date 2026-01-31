@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
 [ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
 [ext_resource type="Texture2D" uid="uid://n26t4i0pqk5p" path="res://UI/phone_ringing_spritesheet.png" id="11_x458k"]
+[ext_resource type="PackedScene" uid="uid://c4yklctynysay" path="res://RoomProps/Window/window.tscn" id="14_lrol0"]
 [ext_resource type="PackedScene" uid="uid://bitavwau88anq" path="res://SuspectObjects/Blood/blood_spawner.tscn" id="14_x458k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
@@ -262,6 +263,21 @@ offset_bottom = -320.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="RopeButton" type="Button" parent="CanvasLayer/Control/Platter" unique_id=408348396]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -744.0
+offset_top = -554.00024
+offset_right = -520.0
+offset_bottom = -322.00024
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=696881735]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
@@ -281,6 +297,13 @@ polygon = PackedVector2Array(1336, 56, 2336, 56, 2336, 416, 1352, 408)
 [node name="Polygon2D2" type="Polygon2D" parent="BloodSpawner" unique_id=1626194439]
 polygon = PackedVector2Array(1696, 816, 2400, 808, 2400, 1024, 1688, 1032)
 
+[node name="Window" parent="." unique_id=1269573547 instance=ExtResource("14_lrol0")]
+position = Vector2(1984, 248)
+
+[node name="Body2" parent="." unique_id=289655189 instance=ExtResource("2_00vsl")]
+position = Vector2(1248, 888)
+
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Platter/RopeButton" to="." method="_on_rope_button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]

@@ -28,7 +28,7 @@ texture = ExtResource("3_fsbb7")
 position = Vector2(408, 0)
 texture = ExtResource("2_4isx2")
 
-[node name="HidableArea" type="Area2D" parent="." unique_id=518465086]
+[node name="HidableArea" type="Area2D" parent="." unique_id=518465086 groups=["HideableArea"]]
 collision_layer = 16
 collision_mask = 4
 

@@ -8,6 +8,7 @@ extends Node2D
 @onready var cursor_idle_sprite := preload("uid://o83towqvdmu1")
 @onready var sponge_sprite := preload("uid://bp1322y53ypoc")
 @onready var cursor_interact_sprite := preload("uid://sib4a4v1nb8k")
+@onready var rope_sprite = preload("uid://dfnifkoev08sj")
 
 
 var current_cursor_state := globals.Items.SPONGE:
@@ -49,7 +50,17 @@ func on_state_changed():
 		Input.set_custom_mouse_cursor(cursor_idle_sprite, 0, hotspot)
 	elif globals.current_item == globals.Items.SPONGE:
 		Input.set_custom_mouse_cursor(sponge_sprite,0, hotspot)
-	
+	elif globals.current_item == globals.Items.ROPE:
+		Input.set_custom_mouse_cursor(rope_sprite, 0, hotspot)
 
 func on_click_timer_end():
 	on_state_changed()
+
+
+func _on_rope_button_pressed() -> void:
+	if globals.current_item != globals.Items.ROPE:
+		globals.current_item = globals.Items.ROPE
+	else:
+		globals.current_item = globals.Items.NONE
+	ui.platter.texture = ui.platter_sprites[globals.current_item]
+	animation_player.play("hide_platter")

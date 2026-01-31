@@ -43,7 +43,7 @@ flip_h = true
 position = Vector2(424, 0)
 texture = ExtResource("4_bkvww")
 
-[node name="HidingArea" type="Area2D" parent="CupboardL" unique_id=596665258]
+[node name="HidingArea" type="Area2D" parent="CupboardL" unique_id=596665258 groups=["HideableArea"]]
 position = Vector2(-1, 0)
 collision_layer = 16
 collision_mask = 4
@@ -80,7 +80,7 @@ position = Vector2(-112, 0)
 texture = ExtResource("4_bkvww")
 flip_h = true
 
-[node name="HidingArea" type="Area2D" parent="CupboardR" unique_id=913498849]
+[node name="HidingArea" type="Area2D" parent="CupboardR" unique_id=913498849 groups=["HideableArea"]]
 collision_layer = 16
 collision_mask = 4
 

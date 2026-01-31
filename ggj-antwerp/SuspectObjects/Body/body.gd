@@ -15,20 +15,16 @@ var dragging := false:
 	set(value):
 		if value:
 			for part in body_parts:
-				part.gravity_scale = 1
 				current_dragged_body_part.freeze = true
-				#part.freeze = true
-				
 		elif !is_hidden:
 			for part in body_parts:
-				part.gravity_scale = 1
-				part.linear_velocity = Vector2.ZERO
 				part.freeze = false
 		dragging = value
 
 @onready var torso := $Torso
 var mouse_offset := Vector2.ZERO
 var overlapping_area_count := 0
+var overlapping_body_count := 0
 var total_area_count : int
 var body_parts = []
 var body_part_mouse_areas = []
@@ -41,6 +37,8 @@ var current_dragged_body_part:
 			draggable = true
 		current_dragged_body_part = value
 var velocity = Vector2.ZERO
+var is_tied := false
+var is_body_part_on_floor := false
 
 func _ready():
 	z_index = 2
@@ -57,6 +55,8 @@ func _ready():
 				var area = child
 				area.area_entered.connect(on_dead_body_area_entered)
 				area.area_exited.connect(on_dead_body_area_exited)
+				area.body_entered.connect(on_dead_body_body_entered)
+				area.body_exited.connect(on_dead_body_body_exited)
 				total_area_count += 1
 			elif child.is_in_group("MouseArea"):
 				var area = child
@@ -66,10 +66,11 @@ func _ready():
 			
 
 func _physics_process(delta: float) -> void:
-	
 	if Input.is_action_just_pressed("click") and draggable and globals.current_item != globals.Items.SPONGE:
+		if globals.current_item == globals.Items.ROPE:
+			tie_body()
+			return
 		dragging = true
-		
 		mouse_offset = current_dragged_body_part.position - get_global_mouse_position()
 	if dragging and current_dragged_body_part.position.distance_to(get_global_mouse_position() + mouse_offset) > 50:
 		var direction = current_dragged_body_part.position.direction_to(get_global_mouse_position() + mouse_offset)
@@ -81,17 +82,35 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("click") and dragging:
 		dragging = false
 		current_dragged_body_part = null
-	if overlapping_area_count < total_area_count:
+	if overlapping_area_count < total_area_count or overlapping_body_count > 0:
 		is_hidden = false
-	if current_dragged_body_part != null: print(current_dragged_body_part.name)
-	
-	
+		
+	#print(overlapping_area_count, total_area_count, ' ', overlapping_body_count)
+
+
+func tie_body():
+	if !is_tied:
+		for part in body_parts:
+			part.lock_rotation = true
+		is_tied = true
+	else:
+		for part in body_parts:
+			part.lock_rotation = false
+		is_tied = false
 func on_dead_body_area_entered(area : Area2D):
-	overlapping_area_count += 1
+	if area.is_in_group("HideableArea"):
+		overlapping_area_count += 1
+		
 
 func on_dead_body_area_exited(area : Area2D):
-	overlapping_area_count -= 1
-
+	if area.is_in_group("HideableArea"):
+		overlapping_area_count -= 1
+func on_dead_body_body_entered(body : Node2D):
+	if body.get_parent() != self:
+		overlapping_body_count += 1
+func on_dead_body_body_exited(body : Node2D):
+	if body.get_parent() != self:
+		overlapping_body_count -= 1
 func _on_mouse_entered(area : Area2D) -> void:
 	if dragging:
 		return

@@ -5,8 +5,8 @@ enum States {
 	DISABLED,
 	ACTIVE
 }
-var active_sprite : Sprite2D
-var disabled_sprite : Sprite2D
+var active_sprite : Node2D
+var disabled_sprite : Node2D
 var active_clicking_collision : CollisionShape2D
 var disabled_clicking_collision : CollisionShape2D
 
@@ -21,17 +21,18 @@ var current_state : States = States.DISABLED:
 
 func _ready():
 	for child in get_children():
-		if child is Sprite2D:
-			if child.is_in_group("Active"):
-				active_sprite = child
-			elif child.is_in_group("Disabled"):
-				disabled_sprite = child
 		if child is Area2D:
 			for collisionshape in child.get_children():
 				if collisionshape.is_in_group("Active"):
 					active_clicking_collision = collisionshape
 				elif collisionshape.is_in_group("Disabled"):
 					disabled_clicking_collision = collisionshape
+		else:
+			if child.is_in_group("Active"):
+				active_sprite = child
+			elif child.is_in_group("Disabled"):
+				disabled_sprite = child
+		
 	
 	clickable_area.input_event.connect(on_mouse_interact)
 	current_state = States.DISABLED
