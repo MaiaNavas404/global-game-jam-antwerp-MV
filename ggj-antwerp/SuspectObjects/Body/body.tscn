@@ -8,21 +8,33 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rs05b"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yumvh"]
+size = Vector2(144, 136)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ycrf"]
 size = Vector2(128, 232)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxbx3"]
-size = Vector2(176, 520)
+size = Vector2(176, 254)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m4yc"]
 size = Vector2(152, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23s0c"]
+size = Vector2(144, 67.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihaww"]
 size = Vector2(152, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3fw5"]
+size = Vector2(144, 67.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owrkx"]
 radius = 15.999998
 height = 160.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqjs3"]
+size = Vector2(56, 169.75)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxbx3"]
 radius = 15.0
@@ -52,6 +64,15 @@ collision_mask = 16
 position = Vector2(0, -168)
 shape = SubResource("RectangleShape2D_rs05b")
 
+[node name="MouseDragArea" type="Area2D" parent="Head" unique_id=536953300 groups=["MouseArea"]]
+position = Vector2(0, 184)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/MouseDragArea" unique_id=1196075669]
+position = Vector2(0, -188)
+shape = SubResource("RectangleShape2D_yumvh")
+
 [node name="Torso" type="RigidBody2D" parent="." unique_id=2048034777]
 position = Vector2(0, -264)
 collision_layer = 4
@@ -63,11 +84,6 @@ texture = ExtResource("1_qc14p")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torso" unique_id=1982603219]
 shape = SubResource("RectangleShape2D_4ycrf")
-
-[node name="MouseDragArea" type="Area2D" parent="Torso" unique_id=536953300]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/MouseDragArea" unique_id=1196075669]
-shape = SubResource("RectangleShape2D_dxbx3")
 
 [node name="DeadBodyArea2" type="Area2D" parent="Torso" unique_id=1393222579 groups=["HideAreaCheck"]]
 position = Vector2(0, 264)
@@ -86,6 +102,14 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/DeadBodyArea3" unique_id=1675485864]
 position = Vector2(-48, -368)
 shape = SubResource("RectangleShape2D_rs05b")
+
+[node name="MouseDragArea2" type="Area2D" parent="Torso" unique_id=928624668 groups=["MouseArea"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/MouseDragArea2" unique_id=1543419676]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_dxbx3")
 
 [node name="ArmL" type="RigidBody2D" parent="." unique_id=690919558]
 position = Vector2(-136, -348)
@@ -108,6 +132,14 @@ collision_mask = 16
 position = Vector2(-56, -264)
 shape = SubResource("RectangleShape2D_rs05b")
 
+[node name="MouseDragArea2" type="Area2D" parent="ArmL" unique_id=1379396609 groups=["MouseArea"]]
+position = Vector2(-5, -4)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArmL/MouseDragArea2" unique_id=1835676902]
+shape = SubResource("RectangleShape2D_23s0c")
+
 [node name="ArmR" type="RigidBody2D" parent="." unique_id=1724598728]
 position = Vector2(136, -352)
 collision_layer = 4
@@ -129,6 +161,14 @@ collision_mask = 16
 position = Vector2(144, -264)
 shape = SubResource("RectangleShape2D_rs05b")
 
+[node name="MouseDragArea2" type="Area2D" parent="ArmR" unique_id=1537898443 groups=["MouseArea"]]
+position = Vector2(0, -8)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArmR/MouseDragArea2" unique_id=913549635]
+shape = SubResource("RectangleShape2D_q3fw5")
+
 [node name="LegL" type="RigidBody2D" parent="." unique_id=1263340492]
 position = Vector2(-141, 259)
 collision_layer = 4
@@ -144,6 +184,14 @@ texture = ExtResource("1_qc14p")
 position = Vector2(101, -331)
 shape = SubResource("CapsuleShape2D_owrkx")
 
+[node name="MouseDragArea2" type="Area2D" parent="LegL" unique_id=1500266606 groups=["MouseArea"]]
+position = Vector2(101, -336)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LegL/MouseDragArea2" unique_id=985565887]
+shape = SubResource("RectangleShape2D_uqjs3")
+
 [node name="LegR" type="RigidBody2D" parent="." unique_id=74409102]
 position = Vector2(-60, 259)
 collision_layer = 4
@@ -158,6 +206,14 @@ texture = ExtResource("1_qc14p")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LegR" unique_id=282975581]
 position = Vector2(101, -331)
 shape = SubResource("CapsuleShape2D_dxbx3")
+
+[node name="MouseDragArea2" type="Area2D" parent="LegR" unique_id=424586208 groups=["MouseArea"]]
+position = Vector2(100, -331)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LegR/MouseDragArea2" unique_id=602355061]
+shape = SubResource("RectangleShape2D_uqjs3")
 
 [node name="PinJoints" type="Node2D" parent="." unique_id=516469386]
 

@@ -170,7 +170,7 @@ position = Vector2(1504, 522)
 position = Vector2(1408, 856)
 
 [node name="Body" parent="." unique_id=1811897074 instance=ExtResource("2_00vsl")]
-position = Vector2(472, 320)
+position = Vector2(176, 904)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
