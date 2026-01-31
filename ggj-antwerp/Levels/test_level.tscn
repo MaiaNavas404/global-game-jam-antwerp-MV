@@ -9,12 +9,109 @@
 [ext_resource type="PackedScene" uid="uid://bbklm8wlq8pm5" path="res://RoomProps/Lamp/lamp.tscn" id="6_ub4j8"]
 [ext_resource type="Texture2D" uid="uid://dyhdq4yf5c4bx" path="res://RoomProps/Bed/bed.PNG" id="8_7e6fp"]
 [ext_resource type="PackedScene" uid="uid://ch4fhu50xyyeq" path="res://SuspectObjects/Blood/blood_stain.tscn" id="9_tc6tp"]
+[ext_resource type="Script" uid="uid://cnl6tm1uyd2ef" path="res://Levels/ui.gd" id="10_dkv23"]
 [ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
-[ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="11_k8b6b"]
 [ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
+[ext_resource type="Texture2D" uid="uid://n26t4i0pqk5p" path="res://UI/phone_ringing_spritesheet.png" id="11_x458k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrol0"]
+atlas = ExtResource("11_x458k")
+region = Rect2(0, 0, 254, 0)
+
+[sub_resource type="Animation" id="Animation_ouwm7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CallButton:texture_normal:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 254, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Platter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1127, 1112)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CallButton:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_662sx"]
+resource_name = "call"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CallButton:texture_normal:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 254, 0), Rect2(254, 0, 254, 0), Rect2(508, 0, 254, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dkv23"]
+resource_name = "raise_platter"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Platter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.39999998, 1.5),
+"transitions": PackedFloat32Array(0.3789293, 1),
+"update": 0,
+"values": [Vector2(1127, 1112), Vector2(1127, 510)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/CallButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.39999998),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cn5b1"]
+_data = {
+&"RESET": SubResource("Animation_ouwm7"),
+&"call": SubResource("Animation_662sx"),
+&"raise_platter": SubResource("Animation_dkv23")
+}
 
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
@@ -66,6 +163,7 @@ texture = ExtResource("8_7e6fp")
 position = Vector2(1672, 248)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649908782]
+script = ExtResource("10_dkv23")
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=297298772]
 layout_mode = 3
@@ -76,7 +174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=1718897906]
+[node name="CallButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=1718897906]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -87,9 +185,9 @@ offset_left = -128.0
 offset_top = -128.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("11_k8b6b")
+texture_normal = SubResource("AtlasTexture_lrol0")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=235565738]
+[node name="Platter" type="TextureRect" parent="CanvasLayer/Control" unique_id=235565738]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -97,12 +195,14 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -793.0
-offset_top = -570.0
+offset_top = 32.0
+offset_bottom = 602.00037
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("11_lx7qo")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/TextureRect" unique_id=347079497]
+[node name="SpongeButton" type="Button" parent="CanvasLayer/Control/Platter" unique_id=347079497]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -116,7 +216,12 @@ offset_bottom = -320.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=696881735]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_cn5b1")
+
 [node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
 
-[connection signal="pressed" from="CanvasLayer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/TextureRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
+[connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
