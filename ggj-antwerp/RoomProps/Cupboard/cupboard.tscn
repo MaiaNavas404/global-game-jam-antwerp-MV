@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbt42rn482q3e" path="res://RoomProps/Cupboard/cupboard_door_back.PNG" id="4_bkvww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au1kp"]
-size = Vector2(277, 738.5)
+size = Vector2(294.5, 738.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hxk6"]
 size = Vector2(296, 768)
@@ -34,6 +34,7 @@ hiding_area = NodePath("HidingArea")
 clickable_area = NodePath("ClickingArea")
 
 [node name="ClosedSprite" type="Sprite2D" parent="CupboardL" unique_id=2140428035 groups=["Disabled"]]
+z_index = 1
 position = Vector2(152, 0)
 texture = ExtResource("3_hi20d")
 flip_h = true
@@ -47,7 +48,7 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CupboardL/HidingArea" unique_id=1911059078]
-position = Vector2(156, 14.75)
+position = Vector2(147.25, 14.75)
 shape = SubResource("RectangleShape2D_au1kp")
 
 [node name="ClickingArea" type="Area2D" parent="CupboardL" unique_id=142178035]
@@ -71,6 +72,7 @@ hiding_area = NodePath("HidingArea")
 clickable_area = NodePath("ClickingArea")
 
 [node name="ClosedSprite" type="Sprite2D" parent="CupboardR" unique_id=1980687473 groups=["Disabled"]]
+z_index = 1
 position = Vector2(152, 0)
 texture = ExtResource("3_hi20d")
 
