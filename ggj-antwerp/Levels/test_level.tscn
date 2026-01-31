@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpvhaerxj7c5v" path="res://RoomProps/SmallCupboard/small_cupboard.tscn" id="4_i4ak4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
-size = Vector2(1482, 20)
+size = Vector2(2722, 20)
 
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
@@ -20,7 +20,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1775641596]
-position = Vector2(731, 0)
+position = Vector2(1351, 0)
 shape = SubResource("RectangleShape2D_i4ak4")
 
 [node name="SmallCupboard" parent="." unique_id=152157778 instance=ExtResource("4_i4ak4")]
