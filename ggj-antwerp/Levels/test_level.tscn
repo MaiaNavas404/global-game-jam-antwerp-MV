@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c4yklctynysay" path="res://RoomProps/Window/window.tscn" id="14_lrol0"]
 [ext_resource type="Texture2D" uid="uid://bgfntfxk8ssmx" path="res://Score/cop_spritesheet.PNG" id="14_pcblp"]
 [ext_resource type="PackedScene" uid="uid://bitavwau88anq" path="res://SuspectObjects/Blood/blood_spawner.tscn" id="14_x458k"]
+[ext_resource type="Texture2D" uid="uid://b6hxe52g2im0q" path="res://Score/ProgressionCutscene/level1_elevator.png" id="15_7hwld"]
 [ext_resource type="Texture2D" uid="uid://d1pvafssin03k" path="res://Score/ProgressionCutscene/frame1.PNG" id="15_524xy"]
 [ext_resource type="Texture2D" uid="uid://dprrofkb675g2" path="res://Score/ProgressionCutscene/frame2.PNG" id="16_qmhwg"]
 [ext_resource type="Texture2D" uid="uid://cal3tbtuq3vk7" path="res://Score/ProgressionCutscene/frame3.PNG" id="17_y8lus"]
@@ -166,6 +167,10 @@ _data = {
 atlas = ExtResource("14_pcblp")
 region = Rect2(0, 0, 763, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7ebw"]
+atlas = ExtResource("15_7hwld")
+region = Rect2(0, 0, 1004, 0)
+
 [sub_resource type="Animation" id="Animation_cn5b1"]
 length = 0.001
 tracks/0/type = "value"
@@ -191,6 +196,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:lift_animation_playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:lift_animation_phase")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/LiftTexture:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_lrol0"]
@@ -265,6 +306,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_524xy"]
 resource_name = "transition"
+length = 2.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -278,6 +320,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:lift_animation_playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:lift_animation_phase")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.6, 1.8, 1.9999999, 2.2, 2.3999999, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/LiftTexture:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ouwm7"]
 _data = {
@@ -290,6 +368,7 @@ _data = {
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
 CURSOR_CLICK_DURATION = 0.1
+lift_animation_phase = 1
 metadata/_edit_vertical_guides_ = [2214.0, -220.0]
 metadata/_edit_horizontal_guides_ = [880.0]
 
@@ -494,7 +573,7 @@ anchor_bottom = 0.5
 offset_left = -256.0
 offset_top = -420.0
 offset_right = 256.0
-offset_bottom = 276.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("13_524xy")
@@ -515,6 +594,12 @@ theme = ExtResource("13_524xy")
 text = "Good Job"
 vertical_alignment = 1
 
+[node name="Continue" type="Button" parent="CanvasLayer/Control/Stats" unique_id=1381887389]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("13_524xy")
+text = "CONTINUE"
+
 [node name="CopFace" type="TextureRect" parent="CanvasLayer/Control/Stats" unique_id=259085337]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
@@ -522,12 +607,6 @@ size_flags_vertical = 3
 texture = SubResource("AtlasTexture_7hwld")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="Continue" type="Button" parent="CanvasLayer/Control/Stats" unique_id=1381887389]
-layout_mode = 2
-size_flags_vertical = 10
-theme = ExtResource("13_524xy")
-text = "CONTINUE"
 
 [node name="EndColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=18978606]
 layout_mode = 1
@@ -538,6 +617,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="LiftTexture" type="TextureRect" parent="CanvasLayer/Control" unique_id=1426208796]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -138.0
+offset_right = 138.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_k7ebw")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ConceptArt" type="Sprite2D" parent="." unique_id=21262659]
 visible = false

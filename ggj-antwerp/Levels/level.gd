@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var CURSOR_CLICK_DURATION := 0.5
+@export var lift_animation_phase := 0
+@export var lift_animation_playing := false
 
 @onready var animation_player: AnimationPlayer = $CanvasLayer/Control/AnimationPlayer
 @onready var ui: CanvasLayer = $CanvasLayer
@@ -26,6 +28,8 @@ var player_score : float = 0.0
 @onready var background_music := $BGM
 @onready var sfx := $SFX
 @onready var cop_bg_color: ColorRect = $CanvasLayer/Control/CopBGColor
+const ELEVATOR_ATLAS := [preload("uid://b6hxe52g2im0q"),preload("uid://b1afg5owjtmtf"), preload("uid://csjw5bth5iuxs"),preload("uid://dpfkwbumlonej")]
+
 
 var current_cursor_state := globals.Items.SPONGE:
 	set(value):
@@ -35,6 +39,7 @@ var cursor_click_timer : Timer
 var hotspot := Vector2(40, 40)
 
 func _ready():
+	print(globals.level)
 	globals.active_object_count = 0
 	stats.visible = false
 	cop_bg_color.visible = false
@@ -80,6 +85,8 @@ func _physics_process(delta: float) -> void:
 			Input.set_custom_mouse_cursor(cursor_interact_sprite, 0, hotspot)
 		elif Input.is_action_just_released("click"):
 			cursor_click_timer.start()
+	if lift_animation_playing:
+		play_lift_animation(delta)
 
 func _on_sponge_button_pressed() -> void:
 	if globals.current_item != globals.Items.SPONGE:
@@ -119,6 +126,12 @@ func _on_bell_button_pressed() -> void:
 	globals.current_item = globals.Items.NONE
 	on_state_changed()
 	
+
+func play_lift_animation(delta):
+	var frame_width := 1004
+	var lift_texture: TextureRect = $CanvasLayer/Control/LiftTexture
+	lift_texture.texture.atlas = ELEVATOR_ATLAS[globals.level-1]
+	lift_texture.texture.set_region(Rect2(lift_animation_phase * frame_width, 0, frame_width, 0))
 	
 
 func _on_level_animations_animation_finished(anim_name: StringName) -> void:
