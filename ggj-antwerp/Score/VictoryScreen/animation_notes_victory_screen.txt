@@ -1,0 +1,3 @@
+Animation Notes Victory Screen
+Hold frame two for two frames, every other frame is one
+When you reach victory, play the normal level elevator animation first, then these frames right after it.
