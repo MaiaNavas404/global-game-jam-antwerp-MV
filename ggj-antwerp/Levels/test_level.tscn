@@ -14,6 +14,7 @@
 [ext_resource type="Theme" uid="uid://dms6ae12htitg" path="res://UI/new_theme.tres" id="13_524xy"]
 [ext_resource type="Texture2D" uid="uid://cks0s2ow33l2g" path="res://Score/ProgressionCutscene/frame0.PNG" id="13_y77ci"]
 [ext_resource type="PackedScene" uid="uid://c4yklctynysay" path="res://RoomProps/Window/window.tscn" id="14_lrol0"]
+[ext_resource type="Texture2D" uid="uid://bgfntfxk8ssmx" path="res://Score/cop_spritesheet.PNG" id="14_pcblp"]
 [ext_resource type="PackedScene" uid="uid://bitavwau88anq" path="res://SuspectObjects/Blood/blood_spawner.tscn" id="14_x458k"]
 [ext_resource type="Texture2D" uid="uid://d1pvafssin03k" path="res://Score/ProgressionCutscene/frame1.PNG" id="15_524xy"]
 [ext_resource type="Texture2D" uid="uid://dprrofkb675g2" path="res://Score/ProgressionCutscene/frame2.PNG" id="16_qmhwg"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4uidyw7k8uy" path="res://Score/ProgressionCutscene/frame7.PNG" id="21_6tabg"]
 [ext_resource type="Texture2D" uid="uid://dwpl1uqp3wb6f" path="res://Score/ProgressionCutscene/frame8.PNG" id="22_ag5ov"]
 [ext_resource type="AudioStream" uid="uid://b6tf38e2hb0la" path="res://SFX/Music/game_theme.mp3" id="24_qmhwg"]
+[ext_resource type="AudioStream" uid="uid://c4aqww8adbdj" path="res://SFX/Bell_003.wav" id="25_y8lus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
@@ -160,6 +162,10 @@ _data = {
 &"raise_platter": SubResource("Animation_dkv23")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hwld"]
+atlas = ExtResource("14_pcblp")
+region = Rect2(0, 0, 763, 1080)
+
 [sub_resource type="Animation" id="Animation_cn5b1"]
 length = 0.001
 tracks/0/type = "value"
@@ -185,18 +191,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Control/Stats:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_lrol0"]
@@ -230,11 +224,23 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Control/Stats:visible")
+tracks/2/path = NodePath("CanvasLayer/Control/TextureRect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BGM:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.3000001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -461,7 +467,6 @@ mouse_filter = 2
 color = Color(0, 0, 0.05882353, 0.44705883)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1333068000]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -470,8 +475,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="CopBGColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=526270697]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08061991, 0.07476207, 0.1296277, 0.57254905)
+
 [node name="Stats" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=2135337708]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -484,6 +497,7 @@ offset_right = 256.0
 offset_bottom = 276.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("13_524xy")
 
 [node name="Score" type="Label" parent="CanvasLayer/Control/Stats" unique_id=2094464835]
 layout_mode = 2
@@ -501,11 +515,13 @@ theme = ExtResource("13_524xy")
 text = "Good Job"
 vertical_alignment = 1
 
-[node name="Stains" type="Label" parent="CanvasLayer/Control/Stats" unique_id=1546210040]
-visible = false
+[node name="CopFace" type="TextureRect" parent="CanvasLayer/Control/Stats" unique_id=259085337]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
-theme = ExtResource("13_524xy")
-text = "Blood stains left:"
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_7hwld")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Continue" type="Button" parent="CanvasLayer/Control/Stats" unique_id=1381887389]
 layout_mode = 2
@@ -534,11 +550,15 @@ autoplay = &"level_start"
 
 [node name="Bodies" type="Node2D" parent="." unique_id=243719347]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=69714004]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=69714004]
 stream = ExtResource("24_qmhwg")
 volume_db = -16.305
 autoplay = true
 parameters/looping = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=420565451]
+stream = ExtResource("25_y8lus")
+volume_db = -12.749
 
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
@@ -547,4 +567,4 @@ parameters/looping = true
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Control/Stats/Continue" to="." method="_on_continue_pressed"]
 [connection signal="animation_finished" from="LevelAnimations" to="." method="_on_level_animations_animation_finished"]
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="BGM" to="." method="_on_audio_stream_player_finished"]

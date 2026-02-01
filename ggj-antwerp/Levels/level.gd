@@ -23,7 +23,9 @@ var total_score : float = 0.0
 var player_score : float = 0.0
 @onready var score_label: Label = $CanvasLayer/Control/Stats/Score
 @onready var stats: VBoxContainer = $CanvasLayer/Control/Stats
-
+@onready var background_music := $BGM
+@onready var sfx := $SFX
+@onready var cop_bg_color: ColorRect = $CanvasLayer/Control/CopBGColor
 
 var current_cursor_state := globals.Items.SPONGE:
 	set(value):
@@ -34,6 +36,8 @@ var hotspot := Vector2(40, 40)
 
 func _ready():
 	globals.active_object_count = 0
+	stats.visible = false
+	cop_bg_color.visible = false
 	globals.level_ended = false
 	get_viewport().physics_object_picking_first_only = true
 	get_viewport().physics_object_picking_sort = true
@@ -108,9 +112,12 @@ func _on_rope_button_pressed() -> void:
 
 
 func _on_bell_button_pressed() -> void:
+	sfx.play()
 	animation_player.play("hide_platter")
 	level_animation.play("level_ended")
 	globals.level_ended = true
+	globals.current_item = globals.Items.NONE
+	on_state_changed()
 	
 	
 
@@ -120,7 +127,9 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		get_tree().reload_current_scene()
 	elif anim_name == "level_ended":
 		stats.visible = true
-		$AudioStreamPlayer.stop()
+		cop_bg_color.visible = true
+		var cop_face: TextureRect = $CanvasLayer/Control/Stats/CopFace
+		var cop_face_frame_width := 763
 		var stains_left : int = blood_spawner.get_node("SpawnedBlood").get_child_count()
 		var bodies_left := 0
 		for body in bodies.get_children():
@@ -132,15 +141,20 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		player_score -= active_object_points * globals.active_object_count
 		score_label.text = "Score: " + str(int(player_score)) + "/" + str(int(total_score))
 		var message_label = stats.get_node("Message")
+		var cop_texture_region : Rect2
 		if player_score / total_score >= 0.6:
 			message_label.text = "Good Job!"
+			cop_texture_region = Rect2(cop_face_frame_width, 0, cop_face_frame_width, 0)
 		elif player_score / total_score >= 0.2:
 			message_label.text = "Hopefully The Cops Don't Find It..."
+			cop_texture_region = Rect2(0, 0, cop_face_frame_width, 0)
 		elif player_score < 0.0:
 			message_label.text = "How did you even do that..."
+			cop_texture_region = Rect2(2 * cop_face_frame_width, 0, cop_face_frame_width, 0)
 		elif player_score / total_score >= 0.0:
 			message_label.text = "Yeah No You're Going To Jail."
-		
+			cop_texture_region = Rect2(2 * cop_face_frame_width, 0, cop_face_frame_width, 0)
+		cop_face.texture.set_region(cop_texture_region)
 	
 func on_lamp_state_changed(state : bool):
 	lamp_overlay.visible = !state
