@@ -28,8 +28,12 @@ var player_score : float = 0.0
 @onready var background_music := $BGM
 @onready var sfx := $SFX
 @onready var cop_bg_color: ColorRect = $CanvasLayer/Control/CopBGColor
-const ELEVATOR_ATLAS := [preload("uid://b6hxe52g2im0q"),preload("uid://b1afg5owjtmtf"), preload("uid://csjw5bth5iuxs"),preload("uid://dpfkwbumlonej")]
-
+const ELEVATOR_ATLAS := [preload("res://Score/ProgressionCutscene/level1_elevator.png"),preload("res://Score/ProgressionCutscene/level2_elevator.png"),
+preload("res://Score/ProgressionCutscene/level3_elevator.png"),preload("res://Score/ProgressionCutscene/level4_elevator.png"), 
+preload("res://Score/ProgressionCutscene/level5_elevator.png"), preload("res://Score/ProgressionCutscene/level6_elevator.png"),
+preload("res://Score/ProgressionCutscene/level7_elevator.png"), preload("res://Score/ProgressionCutscene/level8_elevator.png"),
+preload("res://Score/ProgressionCutscene/level9_elevator.png")]
+var lost := false
 
 var current_cursor_state := globals.Items.SPONGE:
 	set(value):
@@ -137,7 +141,10 @@ func play_lift_animation(delta):
 func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "transition":
 		globals.level += 1
-		get_tree().reload_current_scene()
+		if !lost:
+			get_tree().reload_current_scene()
+		else:
+			get_tree().change_scene_to_file("res://TitleScreen/lose_screen.tscn")
 	elif anim_name == "level_ended":
 		stats.visible = true
 		cop_bg_color.visible = true
@@ -167,6 +174,7 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		elif player_score / total_score >= 0.0:
 			message_label.text = "Yeah No You're Going To Jail."
 			cop_texture_region = Rect2(2 * cop_face_frame_width, 0, cop_face_frame_width, 0)
+			lost = true
 		cop_face.texture.set_region(cop_texture_region)
 	
 func on_lamp_state_changed(state : bool):
