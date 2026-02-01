@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c3xd6e8bmmtfp"]
+
+[ext_resource type="Texture2D" uid="uid://oups2dtfbwgl" path="res://UI/bubble.PNG" id="1_i0s2o"]
+
+[sub_resource type="Curve" id="Curve_il5qe"]
+_data = [Vector2(0, 0.6915254), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="BubbleParticles" type="CPUParticles2D" unique_id=398951214]
+emitting = false
+amount = 3
+texture = ExtResource("1_i0s2o")
+one_shot = true
+explosiveness = 0.5
+emission_shape = 1
+emission_sphere_radius = 40.81
+spread = 129.71
+gravity = Vector2(0, 0)
+initial_velocity_min = 85.28
+initial_velocity_max = 170.55
+scale_amount_curve = SubResource("Curve_il5qe")

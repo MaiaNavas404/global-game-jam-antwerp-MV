@@ -3,6 +3,8 @@ extends Node2D
 @export var STAIN_CAPACITY := 4
 
 @onready var stain_life = STAIN_CAPACITY
+const BUBBLE_PARTICLES = preload("uid://c3xd6e8bmmtfp")
+
 var current_color : Color
 
 var floor_blood_textures = [preload("uid://b45gpyy1wbfg0"), preload("uid://c8fb13iaj47dm"), preload("uid://d1v5uboelglke"), preload("uid://ffh0rwkhglnf"), preload("uid://dym1tmmyg73p3"), preload("uid://b5o858hkcpt57")]
@@ -25,6 +27,10 @@ func init_blood(wall : bool):
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	stain_life -= 1
+	var bubbles = BUBBLE_PARTICLES.instantiate()
+	bubbles.position = position
+	bubbles.emitting = true
+	get_tree().get_current_scene().add_child(bubbles)
 	if stain_life == 0:
 		queue_free()
 	else:

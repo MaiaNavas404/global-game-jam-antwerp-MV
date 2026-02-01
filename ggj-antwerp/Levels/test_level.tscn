@@ -209,7 +209,7 @@ _data = {
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
 CURSOR_CLICK_DURATION = 0.1
-metadata/_edit_vertical_guides_ = [2216.0, -220.0]
+metadata/_edit_vertical_guides_ = [2214.0, -220.0]
 metadata/_edit_horizontal_guides_ = [880.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2096200054]
@@ -245,7 +245,7 @@ polygon = PackedVector2Array(-168, 920, 1048, 928, 1048, 1032, -160, 1024)
 polygon = PackedVector2Array(1800, 896, 2128, 896, 2128, 1016, 1800, 1016)
 
 [node name="Cupboard" parent="." unique_id=557903057 instance=ExtResource("1_ormqy")]
-position = Vector2(1543, 464)
+position = Vector2(1648, 464)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1874029759]
 position = Vector2(-216, 1064)
@@ -277,7 +277,7 @@ position = Vector2(8, 640)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
 script = ExtResource("6_pvdih")
-bounds = Vector2(-220, 2216)
+bounds = Vector2(-220, 2210)
 left_pan_marker = NodePath("PanL")
 right_pan_marker = NodePath("PanR")
 

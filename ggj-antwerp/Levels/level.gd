@@ -31,18 +31,20 @@ func _ready():
 	cursor_click_timer.one_shot = true
 	cursor_click_timer.timeout.connect(on_click_timer_end)
 	globals.lamp_state_changed.connect(on_lamp_state_changed)
+	randomize()
 	body_spawner()
 
 func body_spawner():
-	var number_of_bodies := 1 + int(globals.level/2)
-	var spawn_area_min : float = camera.bounds.x + 100
-	var spawn_area_max : float = camera.bounds.y - 100
+	var number_of_bodies := int(globals.level/2)
+	var spawn_area_min : float = camera.bounds.x 
+	var spawn_area_max : float = camera.bounds.y + 1920
 	var spawn_height := 880
 	
 	for i in range(number_of_bodies):
 		var spawn_position := Vector2(randf_range(spawn_area_min, spawn_area_max), spawn_height)
 		var spawned_body = BODY.instantiate()
 		spawned_body.position = spawn_position
+		
 		add_child(spawned_body)
 
 func _physics_process(delta: float) -> void:
