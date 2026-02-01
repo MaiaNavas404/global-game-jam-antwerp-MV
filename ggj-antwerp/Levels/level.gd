@@ -19,7 +19,7 @@ const SPONGE = preload("uid://cw66wgv4br3vm")
 @onready var bodies: Node2D = $Bodies
 var number_of_bodies : int
 var stain_points := 10
-var body_points := 50
+var body_points := 40
 var active_object_points := 5
 var total_score : float = 0.0
 var player_score : float = 0.0
@@ -47,9 +47,10 @@ var cursor_click_timer : Timer
 var hotspot := Vector2(40, 40)
 
 func _ready():
+	
 	if globals.level != 13:
 		level_animation.play("level_start")
-	else:
+	elif globals.level == 13:
 		level_animation.play("level_start_13")
 	globals.active_object_count = 0
 	stats.visible = false
@@ -153,9 +154,14 @@ func play_lift_animation(delta):
 	
 
 func _on_level_animations_animation_finished(anim_name: StringName) -> void:
+	
 	if anim_name == "transition":
 		globals.level += 1
+		print(globals.level)
 		if !lost:
+			if globals.level > 13:
+				get_tree().change_scene_to_file("res://TitleScreen/win_screen.tscn")
+				return
 			get_tree().reload_current_scene()
 		else:
 			get_tree().change_scene_to_file("res://TitleScreen/lose_screen.tscn")
@@ -181,7 +187,7 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		elif player_score / total_score >= 0.6:
 			message_label.text = "Good Job!"
 			cop_texture_region = Rect2(cop_face_frame_width, 0, cop_face_frame_width, 0)
-		elif player_score / total_score >= 0.2:
+		elif player_score / total_score >= 0.3:
 			message_label.text = "Hopefully The Cops Don't Find It..."
 			cop_texture_region = Rect2(0, 0, cop_face_frame_width, 0)
 		elif player_score < 0.0:

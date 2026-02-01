@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://cgilsgk3etdhd"]
+
+[ext_resource type="Script" uid="uid://wq5rla8cjvby" path="res://TitleScreen/lose_screen.gd" id="1_s14b7"]
+[ext_resource type="Texture2D" uid="uid://1npjc3rhxucv" path="res://Score/VictoryScreen/frame1.PNG" id="2_n5a4p"]
+[ext_resource type="Theme" uid="uid://dms6ae12htitg" path="res://UI/new_theme.tres" id="3_68pgx"]
+[ext_resource type="Texture2D" uid="uid://0n1flqtqpee3" path="res://Score/VictoryScreen/frame2.PNG" id="4_7nill"]
+[ext_resource type="Texture2D" uid="uid://ctvmqdankd0q7" path="res://Score/VictoryScreen/frame3.PNG" id="5_7mvhq"]
+[ext_resource type="Texture2D" uid="uid://dyilx1xfy5cwh" path="res://Score/VictoryScreen/frame4.PNG" id="6_chydg"]
+[ext_resource type="Texture2D" uid="uid://ddifwfijrt1nv" path="res://Score/VictoryScreen/frame5.PNG" id="7_5w1uo"]
+[ext_resource type="Texture2D" uid="uid://cw8jldfe4icah" path="res://Score/VictoryScreen/frame6.PNG" id="8_bdt6y"]
+
+[sub_resource type="Animation" id="Animation_jolei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_n5a4p")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hyfwd"]
+resource_name = "win"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_n5a4p"), ExtResource("4_7nill"), ExtResource("5_7mvhq"), ExtResource("6_chydg"), ExtResource("7_5w1uo"), ExtResource("8_bdt6y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6i5f"]
+_data = {
+&"RESET": SubResource("Animation_jolei"),
+&"win": SubResource("Animation_hyfwd")
+}
+
+[node name="win_screen" type="Node2D" unique_id=1704123260]
+script = ExtResource("1_s14b7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=563941647]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=543004365]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=315066786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n5a4p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1420007984]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -484.0
+offset_right = 316.0
+offset_bottom = 484.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer" unique_id=608150572]
+layout_mode = 2
+theme = ExtResource("3_68pgx")
+theme_override_font_sizes/font_size = 60
+text = "You won!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer" unique_id=1703602448]
+layout_mode = 2
+theme = ExtResource("3_68pgx")
+theme_override_font_sizes/font_size = 60
+text = "you have successfully masked the murders
+thanks for playing!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=571806751]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_68pgx")
+text = "main menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=919941262]
+libraries/ = SubResource("AnimationLibrary_g6i5f")
+autoplay = &"win"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
