@@ -25,7 +25,7 @@ func spawn_blood_stain(wall : bool):
 	var spawned_stain = BLOOD_STAIN.instantiate()
 	spawned_stain.init_blood(wall)
 	spawned_stain.position = spawn_point
-	add_child(spawned_stain)
+	$SpawnedBlood.add_child(spawned_stain)
 
 func spawn_progression_manager():
 	var number_stains := 2 + ((globals.level - 1) * 3)

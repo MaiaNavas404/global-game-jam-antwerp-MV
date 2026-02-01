@@ -5,45 +5,46 @@ class_name HidableProps
 
 
 var hidable := false:
-    set(value):
-        if value:
-            clickable_area.z_index = 0
-        else:
-            clickable_area.z_index = 1
-        hidable = value
+	set(value):
+		if value:
+			clickable_area.z_index = 0
+		else:
+			clickable_area.z_index = 1
+		hidable = value
 func _ready():
-    super._ready()
-    #hiding_area.area_entered.connect(on_dead_body_entered)
-    on_state_disabled()
-    disabled_sprite.z_index = 1
-    clickable_area.z_index = 1
+	super._ready()
+	#hiding_area.area_entered.connect(on_dead_body_entered)
+	on_state_disabled()
+	disabled_sprite.z_index = 1
+	clickable_area.z_index = 1
 func _physics_process(delta: float) -> void:
-    if hidable:
-        var dead_bodies = hiding_area.get_overlapping_bodies()
-        for dead_body in dead_bodies:
-            var parent = dead_body.get_parent()
-            if parent.check_hiding():
-                parent.is_hidden = true
-            
+	super._physics_process(delta)
+	if hidable:
+		var dead_bodies = hiding_area.get_overlapping_bodies()
+		for dead_body in dead_bodies:
+			var parent = dead_body.get_parent()
+			if parent.check_hiding():
+				parent.is_hidden = true
+			
 
 func on_state_disabled():
-    super.on_state_disabled()
-    set_object_state_active(false)
+	super.on_state_disabled()
+	set_object_state_active(false)
 
 func on_state_active():
-    super.on_state_active()
-    set_object_state_active(true)
+	super.on_state_active()
+	set_object_state_active(true)
 
 func set_object_state_active(state : bool):
-    hidable = state
-    #hiding_area.monitoring = state
-    #hiding_area.monitorable = state
-    
-    disabled_clicking_collision.disabled = state
-    active_clicking_collision.disabled = !state
+	hidable = state
+	#hiding_area.monitoring = state
+	#hiding_area.monitorable = state
+	
+	disabled_clicking_collision.disabled = state
+	active_clicking_collision.disabled = !state
 
 func hide_dead_body(body):
-    for part in body.body_parts:
-        part.freeze = true
-    
-    body.is_hidden = true
+	for part in body.body_parts:
+		part.freeze = true
+	
+	body.is_hidden = true

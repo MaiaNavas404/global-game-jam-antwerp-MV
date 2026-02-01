@@ -9,6 +9,7 @@ var active_sprite : Node2D
 var disabled_sprite : Node2D
 var active_clicking_collision : CollisionShape2D
 var disabled_clicking_collision : CollisionShape2D
+var is_globals_updated := false
 
 @export var clickable_area : Area2D
 var current_state : States = States.DISABLED:
@@ -38,13 +39,17 @@ func _ready():
 	current_state = States.DISABLED
 	
 
-
+func _physics_process(delta: float) -> void:
+	if globals.level_ended and !is_globals_updated:
+		if current_state == States.ACTIVE:
+			globals.active_object_count += 1
+		is_globals_updated = true
 
 func on_mouse_interact(viewport: Node, event: InputEvent, shape_idx: int):
 	if Input.is_action_just_pressed("click") and globals.current_item == globals.Items.NONE:
 		cycle_current_state()
 		
-		
+
 
 
 func cycle_current_state():

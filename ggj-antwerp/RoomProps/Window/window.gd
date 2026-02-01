@@ -6,6 +6,11 @@ func _ready() -> void:
 	super._ready()
 	$AnimationPlayer.seek(0.3)
 
+func _physics_process(delta: float) -> void:
+	if globals.level_ended:
+		$AudioStreamPlayer.playing = false
+	super._physics_process(delta)
+
 func on_state_active():
 	if $AnimationPlayer.is_playing():
 		return

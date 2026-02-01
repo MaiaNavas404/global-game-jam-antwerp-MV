@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://dms6ae12htitg"]
+
+[ext_resource type="FontFile" uid="uid://vpo6q0hh044w" path="res://UI/AeroviasBrasilNF.otf" id="1_mg8jf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mg8jf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pyjol"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4k6b"]
+
+[resource]
+default_font = ExtResource("1_mg8jf")
+default_font_size = 40
+Button/colors/icon_normal_color = Color(1, 1, 1, 0)
+Button/styles/hover = SubResource("StyleBoxEmpty_mg8jf")
+Button/styles/normal = SubResource("StyleBoxEmpty_pyjol")
+Button/styles/pressed = SubResource("StyleBoxEmpty_i4k6b")

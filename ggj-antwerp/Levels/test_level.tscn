@@ -9,11 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://bbklm8wlq8pm5" path="res://RoomProps/Lamp/lamp.tscn" id="6_ub4j8"]
 [ext_resource type="Texture2D" uid="uid://dyhdq4yf5c4bx" path="res://RoomProps/Bed/bed.PNG" id="8_7e6fp"]
 [ext_resource type="Script" uid="uid://cnl6tm1uyd2ef" path="res://Levels/ui.gd" id="10_dkv23"]
-[ext_resource type="PackedScene" uid="uid://cw66wgv4br3vm" path="res://CleaningTools/sponge.tscn" id="10_k8b6b"]
 [ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
 [ext_resource type="Texture2D" uid="uid://n26t4i0pqk5p" path="res://UI/phone_ringing_spritesheet.png" id="11_x458k"]
+[ext_resource type="Theme" uid="uid://dms6ae12htitg" path="res://UI/new_theme.tres" id="13_524xy"]
+[ext_resource type="Texture2D" uid="uid://cks0s2ow33l2g" path="res://Score/ProgressionCutscene/frame0.PNG" id="13_y77ci"]
 [ext_resource type="PackedScene" uid="uid://c4yklctynysay" path="res://RoomProps/Window/window.tscn" id="14_lrol0"]
 [ext_resource type="PackedScene" uid="uid://bitavwau88anq" path="res://SuspectObjects/Blood/blood_spawner.tscn" id="14_x458k"]
+[ext_resource type="Texture2D" uid="uid://d1pvafssin03k" path="res://Score/ProgressionCutscene/frame1.PNG" id="15_524xy"]
+[ext_resource type="Texture2D" uid="uid://dprrofkb675g2" path="res://Score/ProgressionCutscene/frame2.PNG" id="16_qmhwg"]
+[ext_resource type="Texture2D" uid="uid://cal3tbtuq3vk7" path="res://Score/ProgressionCutscene/frame3.PNG" id="17_y8lus"]
+[ext_resource type="Texture2D" uid="uid://cofgry1c244ft" path="res://Score/ProgressionCutscene/frame4.PNG" id="18_pcblp"]
+[ext_resource type="Texture2D" uid="uid://d1konhs5k0nvq" path="res://Score/ProgressionCutscene/frame5.PNG" id="19_7hwld"]
+[ext_resource type="Texture2D" uid="uid://dp05qj6os7uia" path="res://Score/ProgressionCutscene/frame6.PNG" id="20_k7ebw"]
+[ext_resource type="Texture2D" uid="uid://bl4uidyw7k8uy" path="res://Score/ProgressionCutscene/frame7.PNG" id="21_6tabg"]
+[ext_resource type="Texture2D" uid="uid://dwpl1uqp3wb6f" path="res://Score/ProgressionCutscene/frame8.PNG" id="22_ag5ov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
@@ -164,10 +173,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Stats:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_lrol0"]
 resource_name = "level_ended"
-length = 1.5
+length = 3.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -176,10 +209,34 @@ tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2999998, 1.3999999, 1.4999999, 1.5999999, 1.6999999, 1.8, 1.8999999, 1.9999999, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("13_y77ci"), ExtResource("15_524xy"), ExtResource("16_qmhwg"), ExtResource("17_y8lus"), ExtResource("18_pcblp"), ExtResource("19_7hwld"), ExtResource("20_k7ebw"), ExtResource("21_6tabg"), ExtResource("22_ag5ov")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Stats:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_i45ex"]
@@ -199,11 +256,28 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_524xy"]
+resource_name = "transition"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ouwm7"]
 _data = {
 &"RESET": SubResource("Animation_cn5b1"),
 &"level_ended": SubResource("Animation_lrol0"),
-&"level_start": SubResource("Animation_i45ex")
+&"level_start": SubResource("Animation_i45ex"),
+&"transition": SubResource("Animation_524xy")
 }
 
 [node name="TestLevel" type="Node2D" unique_id=954476652]
@@ -375,16 +449,6 @@ grow_vertical = 0
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
 
-[node name="EndColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=18978606]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
 [node name="LampColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=1009315460]
 layout_mode = 1
 anchors_preset = 15
@@ -395,7 +459,67 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0.05882353, 0.44705883)
 
-[node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1333068000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Stats" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=2135337708]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -420.0
+offset_right = 256.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="CanvasLayer/Control/Stats" unique_id=2094464835]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("13_524xy")
+theme_override_font_sizes/font_size = 60
+text = "SCORE:"
+
+[node name="Message" type="Label" parent="CanvasLayer/Control/Stats" unique_id=662777912]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("13_524xy")
+text = "Good Job"
+vertical_alignment = 1
+
+[node name="Stains" type="Label" parent="CanvasLayer/Control/Stats" unique_id=1546210040]
+visible = false
+layout_mode = 2
+theme = ExtResource("13_524xy")
+text = "Blood stains left:"
+
+[node name="Continue" type="Button" parent="CanvasLayer/Control/Stats" unique_id=1381887389]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("13_524xy")
+text = "CONTINUE"
+
+[node name="EndColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=18978606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="ConceptArt" type="Sprite2D" parent="." unique_id=21262659]
 visible = false
@@ -406,9 +530,12 @@ texture = ExtResource("3_lrol0")
 libraries/ = SubResource("AnimationLibrary_ouwm7")
 autoplay = &"level_start"
 
+[node name="Bodies" type="Node2D" parent="." unique_id=243719347]
+
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/RopeButton" to="." method="_on_rope_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/BellButton" to="." method="_on_bell_button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/Control/Stats/Continue" to="." method="_on_continue_pressed"]
 [connection signal="animation_finished" from="LevelAnimations" to="." method="_on_level_animations_animation_finished"]
