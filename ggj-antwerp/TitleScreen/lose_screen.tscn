@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bx4xx06f4kxbi"]
+
+[ext_resource type="Script" uid="uid://wq5rla8cjvby" path="res://TitleScreen/lose_screen.gd" id="1_uryy4"]
+[ext_resource type="Texture2D" uid="uid://bgwd5stuawf66" path="res://Score/game_over.PNG" id="2_ixgad"]
+[ext_resource type="Theme" uid="uid://dms6ae12htitg" path="res://UI/new_theme.tres" id="3_geyym"]
+
+[node name="LoseScreen" type="Node2D" unique_id=45676922]
+script = ExtResource("1_uryy4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1649198229]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1530318559]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1697393399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ixgad")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1298627967]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -516.0
+offset_right = 280.0
+offset_bottom = 516.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer" unique_id=930055477]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_geyym")
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer" unique_id=1224274305]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_geyym")
+text = "You failed to mask your tracks and ended up in jail...
+thanks for playing!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1039561739]
+layout_mode = 2
+theme = ExtResource("3_geyym")
+text = "main menu"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
