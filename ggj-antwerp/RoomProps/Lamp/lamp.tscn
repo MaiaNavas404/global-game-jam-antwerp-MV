@@ -27,7 +27,9 @@ position = Vector2(-48, -36)
 shape = SubResource("RectangleShape2D_5amlu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=268481829 groups=["Disabled"]]
+scale = Vector2(1.051, 1.051)
 texture = ExtResource("2_vj7tg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=971810457 groups=["Active"]]
+scale = Vector2(1.0513248, 1.0513245)
 texture = ExtResource("3_ch4j0")

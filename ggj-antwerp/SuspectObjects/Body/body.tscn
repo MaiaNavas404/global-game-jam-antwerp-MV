@@ -22,6 +22,9 @@ size = Vector2(126, 208)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxbx3"]
 size = Vector2(137, 224)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03vbf"]
+size = Vector2(128, 238)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m4yc"]
 size = Vector2(152, 40)
 
@@ -66,9 +69,11 @@ shape = SubResource("RectangleShape2D_owrkx")
 
 [node name="DeadBodyArea" parent="Head" unique_id=927969367 instance=ExtResource("3_an7mi")]
 position = Vector2(29, 160)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="Head" unique_id=1346350778 instance=ExtResource("3_an7mi")]
 position = Vector2(-40, 160)
+input_pickable = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Head/DeadBodyArea2" unique_id=983954716]
 position = Vector2(39.5, -149)
@@ -106,18 +111,27 @@ shape = SubResource("RectangleShape2D_dxbx3")
 
 [node name="DeadBodyArea" parent="Torso" unique_id=966126306 instance=ExtResource("3_an7mi")]
 position = Vector2(-48, 61)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="Torso" unique_id=1754262730 instance=ExtResource("3_an7mi")]
 position = Vector2(49, 61)
+input_pickable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Torso/DeadBodyArea2" unique_id=742149503]
+position = Vector2(-51, -68)
+shape = SubResource("RectangleShape2D_03vbf")
 
 [node name="DeadBodyArea5" parent="Torso" unique_id=374665492 instance=ExtResource("3_an7mi")]
 position = Vector2(-1, 168)
+input_pickable = false
 
 [node name="DeadBodyArea4" parent="Torso" unique_id=2060603300 instance=ExtResource("3_an7mi")]
 position = Vector2(-48, 251)
+input_pickable = false
 
 [node name="DeadBodyArea3" parent="Torso" unique_id=410176032 instance=ExtResource("3_an7mi")]
 position = Vector2(49, 251)
+input_pickable = false
 
 [node name="ArmL" type="RigidBody2D" parent="." unique_id=690919558]
 position = Vector2(-136, -348)
@@ -144,9 +158,11 @@ shape = SubResource("RectangleShape2D_23s0c")
 
 [node name="DeadBodyArea" parent="ArmL" unique_id=401698541 instance=ExtResource("3_an7mi")]
 position = Vector2(-56, 167)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="ArmL" unique_id=1173972927 instance=ExtResource("3_an7mi")]
 position = Vector2(-5, 160)
+input_pickable = false
 
 [node name="ArmR" type="RigidBody2D" parent="." unique_id=1724598728]
 position = Vector2(136, -352)
@@ -174,9 +190,11 @@ shape = SubResource("RectangleShape2D_q3fw5")
 
 [node name="DeadBodyArea" parent="ArmR" unique_id=1126849527 instance=ExtResource("3_an7mi")]
 position = Vector2(58, 171)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="ArmR" unique_id=157173664 instance=ExtResource("3_an7mi")]
 position = Vector2(-6, 171)
+input_pickable = false
 
 [node name="LegL" type="RigidBody2D" parent="." unique_id=1263340492]
 position = Vector2(-141, 259)
@@ -205,9 +223,11 @@ shape = SubResource("RectangleShape2D_uqjs3")
 
 [node name="DeadBodyArea" parent="LegL" unique_id=458102414 instance=ExtResource("3_an7mi")]
 position = Vector2(101, -106)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="LegL" unique_id=1624407665 instance=ExtResource("3_an7mi")]
 position = Vector2(113, -172)
+input_pickable = false
 
 [node name="LegR" type="RigidBody2D" parent="." unique_id=74409102]
 position = Vector2(-60, 259)
@@ -235,9 +255,11 @@ shape = SubResource("RectangleShape2D_an7mi")
 
 [node name="DeadBodyArea" parent="LegR" unique_id=297031022 instance=ExtResource("3_an7mi")]
 position = Vector2(101, -106)
+input_pickable = false
 
 [node name="DeadBodyArea2" parent="LegR" unique_id=1496893472 instance=ExtResource("3_an7mi")]
 position = Vector2(101, -172)
+input_pickable = false
 
 [node name="PinJoints" type="Node2D" parent="." unique_id=516469386]
 
@@ -265,8 +287,3 @@ node_b = NodePath("../../Torso")
 position = Vector2(35, -173)
 node_a = NodePath("../../LegR")
 node_b = NodePath("../../Torso")
-
-[node name="Timer" type="Timer" parent="." unique_id=1184253502]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
