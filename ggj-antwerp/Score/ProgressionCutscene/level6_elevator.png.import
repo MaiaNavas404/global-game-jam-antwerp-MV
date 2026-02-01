@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brpm2cow3xjgy"
-path="res://.godot/imported/window_spritesheet.PNG-64a29e683774511c4b4613f6c9140a59.ctex"
+uid="uid://c6noojdvduney"
+path="res://.godot/imported/level6_elevator.png-c0bde3c81aee885a8382c8095060e932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RoomProps/Window/window_spritesheet.PNG"
-dest_files=["res://.godot/imported/window_spritesheet.PNG-64a29e683774511c4b4613f6c9140a59.ctex"]
+source_file="res://Score/ProgressionCutscene/level6_elevator.png"
+dest_files=["res://.godot/imported/level6_elevator.png-c0bde3c81aee885a8382c8095060e932.ctex"]
 
 [params]
 
