@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dbdev5o8dh8ar"]
+
+[ext_resource type="AudioStream" uid="uid://36b1um1ho7fw" path="res://SFX/Music/title_theme.mp3" id="1_j0m2k"]
+[ext_resource type="Texture2D" uid="uid://cy18aq66aiy7s" path="res://TitleScreen/title_screen.JPG" id="2_iym82"]
+[ext_resource type="Texture2D" uid="uid://dkvqwd0q6inuk" path="res://TitleScreen/start_button.PNG" id="3_qp23m"]
+[ext_resource type="Texture2D" uid="uid://c2t6yte3cymdr" path="res://TitleScreen/frame1.PNG" id="4_cqf5v"]
+[ext_resource type="Texture2D" uid="uid://xmic3r5d2yo7" path="res://TitleScreen/frame2.PNG" id="5_f424p"]
+[ext_resource type="Texture2D" uid="uid://uknl7pnfiph0" path="res://TitleScreen/frame3.PNG" id="6_x53nb"]
+[ext_resource type="Texture2D" uid="uid://djfsmwero6hig" path="res://TitleScreen/frame4.PNG" id="7_r64nw"]
+[ext_resource type="Texture2D" uid="uid://cdi1a1k5lfje5" path="res://TitleScreen/frame5.PNG" id="8_fhfdr"]
+[ext_resource type="Texture2D" uid="uid://cgxtsy2a2a7qa" path="res://TitleScreen/frame6.PNG" id="9_ksn83"]
+[ext_resource type="AudioStream" uid="uid://cy2ygmbrdlq3c" path="res://SFX/start_button_stab.mp3" id="10_iym82"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_yrf2f"]
+frames = 6
+one_shot = true
+speed_scale = 0.8
+frame_0/texture = ExtResource("4_cqf5v")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("5_f424p")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("6_x53nb")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("7_r64nw")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("8_fhfdr")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("9_ksn83")
+frame_5/duration = 0.1
+
+[node name="title_screen" type="Node2D" unique_id=1513081905]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1437310236]
+stream = ExtResource("1_j0m2k")
+volume_db = -15.556
+autoplay = true
+parameters/looping = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=594981427]
+texture = ExtResource("2_iym82")
+centered = false
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=415981680]
+offset_left = 206.0
+offset_top = 377.0
+offset_right = 919.0
+offset_bottom = 747.0
+toggle_mode = true
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("3_qp23m")
+texture_pressed = SubResource("AnimatedTexture_yrf2f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextureButton" unique_id=1900296345]
+stream = ExtResource("10_iym82")
+volume_db = -5.0
