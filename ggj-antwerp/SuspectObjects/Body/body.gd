@@ -1,33 +1,37 @@
 extends Node2D
 
-
+@export var chosen: bool
 var draggable := false
+var hidable : bool
 var is_hidden := false:
 	set(value):
 		if value:
-			#$Sprite2D.modulate = Color.AQUAMARINE
+			for part in body_parts:
+				part.freeze = true
+				
 			z_index = 0
 		else:
-			#$Sprite2D.modulate = Color.RED
+			for part in body_parts:
+				if part != current_dragged_body_part:
+					part.freeze = false
 			z_index = 2
+			
 		is_hidden = value
 var dragging := false:
 	set(value):
 		if value:
-			for part in body_parts:
-				current_dragged_body_part.freeze = true
-		elif !is_hidden:
-			for part in body_parts:
-				part.freeze = false
+			current_dragged_body_part.freeze = true
+		else:
+				current_dragged_body_part.freeze = false
 		dragging = value
 
 @onready var torso := $Torso
 var mouse_offset := Vector2.ZERO
 var overlapping_area_count := 0
-var overlapping_body_count := 0
 var total_area_count : int
 var body_parts = []
 var body_part_mouse_areas = []
+var body_part_hide_areas = []
 var body_part_offsets = []
 var current_dragged_body_part:
 	set(value):
@@ -38,7 +42,6 @@ var current_dragged_body_part:
 		current_dragged_body_part = value
 var velocity = Vector2.ZERO
 var is_tied := false
-var is_body_part_on_floor := false
 
 func _ready():
 	z_index = 2
@@ -49,15 +52,13 @@ func _ready():
 			body_part_offsets.append(child.position - torso.position )
 	
 	for part in body_parts:
-		
 		for child in part.get_children():
 			if child.is_in_group("HideAreaCheck"):
 				var area = child
 				area.area_entered.connect(on_dead_body_area_entered)
 				area.area_exited.connect(on_dead_body_area_exited)
-				area.body_entered.connect(on_dead_body_body_entered)
-				area.body_exited.connect(on_dead_body_body_exited)
 				total_area_count += 1
+				body_part_hide_areas.append(child)
 			elif child.is_in_group("MouseArea"):
 				var area = child
 				area.connect("mouse_entered", self._on_mouse_entered, CONNECT_APPEND_SOURCE_OBJECT)
@@ -66,6 +67,7 @@ func _ready():
 			
 
 func _physics_process(delta: float) -> void:
+	hidable = check_hiding()
 	if Input.is_action_just_pressed("click") and draggable and globals.current_item != globals.Items.SPONGE:
 		if globals.current_item == globals.Items.ROPE:
 			tie_body()
@@ -82,10 +84,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("click") and dragging:
 		dragging = false
 		current_dragged_body_part = null
-	if overlapping_area_count < total_area_count or overlapping_body_count > 0:
+	
+	if is_hidden and !check_hiding() and dragging:
 		is_hidden = false
-		
-	#print(overlapping_area_count, total_area_count, ' ', overlapping_body_count)
+	
 
 
 func tie_body():
@@ -97,20 +99,26 @@ func tie_body():
 		for part in body_parts:
 			part.lock_rotation = false
 		is_tied = false
+
+func check_hiding() -> bool:
+	if overlapping_area_count >= total_area_count and !check_overlapping_bodies():
+		return true
+	return false
+
 func on_dead_body_area_entered(area : Area2D):
 	if area.is_in_group("HideableArea"):
 		overlapping_area_count += 1
 		
 
+func check_overlapping_bodies() -> bool:
+	for area in body_part_hide_areas:
+		for overlapping_area in area.get_overlapping_areas():
+			if overlapping_area.is_in_group("HideAreaCheck") and overlapping_area.get_parent().get_parent() != self:
+				return true
+	return false
 func on_dead_body_area_exited(area : Area2D):
 	if area.is_in_group("HideableArea"):
 		overlapping_area_count -= 1
-func on_dead_body_body_entered(body : Node2D):
-	if body.get_parent() != self:
-		overlapping_body_count += 1
-func on_dead_body_body_exited(body : Node2D):
-	if body.get_parent() != self:
-		overlapping_body_count -= 1
 func _on_mouse_entered(area : Area2D) -> void:
 	if dragging:
 		return
@@ -124,3 +132,8 @@ func _on_mouse_exited(area : Area2D) -> void:
 	if current_dragged_body_part == area.get_parent():
 		current_dragged_body_part = null
 	#draggable = false
+
+
+func _on_timer_timeout() -> void:
+	if chosen:
+		print(' hidden: ',is_hidden, ' dragging: ', dragging, ' overlap: ', check_overlapping_bodies(), ' hidable: ',check_hiding())

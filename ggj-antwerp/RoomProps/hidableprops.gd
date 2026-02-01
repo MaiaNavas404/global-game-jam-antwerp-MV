@@ -22,8 +22,8 @@ func _physics_process(delta: float) -> void:
 		var dead_bodies = hiding_area.get_overlapping_bodies()
 		for dead_body in dead_bodies:
 			var parent = dead_body.get_parent()
-			if parent.overlapping_area_count >= parent.total_area_count and !parent.is_hidden and parent.overlapping_body_count == 0:
-				hide_dead_body(dead_body.get_parent())
+			if parent.check_hiding():
+				parent.is_hidden = true
 			
 
 func on_state_disabled():

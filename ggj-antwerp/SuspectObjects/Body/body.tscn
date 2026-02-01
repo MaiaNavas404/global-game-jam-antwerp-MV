@@ -10,6 +10,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owrkx"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywd1n"]
+size = Vector2(99, 76)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yumvh"]
 size = Vector2(144, 136)
 
@@ -53,7 +56,6 @@ position = Vector2(0, -420)
 disable_mode = 1
 collision_layer = 4
 collision_mask = 32
-can_sleep = false
 freeze_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Head" unique_id=394085064]
@@ -63,7 +65,14 @@ texture = ExtResource("2_23s0c")
 shape = SubResource("RectangleShape2D_owrkx")
 
 [node name="DeadBodyArea" parent="Head" unique_id=927969367 instance=ExtResource("3_an7mi")]
-position = Vector2(0, 160)
+position = Vector2(29, 160)
+
+[node name="DeadBodyArea2" parent="Head" unique_id=1346350778 instance=ExtResource("3_an7mi")]
+position = Vector2(-40, 160)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Head/DeadBodyArea2" unique_id=983954716]
+position = Vector2(39.5, -149)
+shape = SubResource("RectangleShape2D_ywd1n")
 
 [node name="MouseDragArea" type="Area2D" parent="Head" unique_id=536953300 groups=["MouseArea"]]
 position = Vector2(0, 184)
@@ -98,6 +107,15 @@ shape = SubResource("RectangleShape2D_dxbx3")
 [node name="DeadBodyArea" parent="Torso" unique_id=966126306 instance=ExtResource("3_an7mi")]
 position = Vector2(-48, 61)
 
+[node name="DeadBodyArea2" parent="Torso" unique_id=1754262730 instance=ExtResource("3_an7mi")]
+position = Vector2(49, 61)
+
+[node name="DeadBodyArea5" parent="Torso" unique_id=374665492 instance=ExtResource("3_an7mi")]
+position = Vector2(-1, 168)
+
+[node name="DeadBodyArea4" parent="Torso" unique_id=2060603300 instance=ExtResource("3_an7mi")]
+position = Vector2(-48, 251)
+
 [node name="DeadBodyArea3" parent="Torso" unique_id=410176032 instance=ExtResource("3_an7mi")]
 position = Vector2(49, 251)
 
@@ -127,6 +145,9 @@ shape = SubResource("RectangleShape2D_23s0c")
 [node name="DeadBodyArea" parent="ArmL" unique_id=401698541 instance=ExtResource("3_an7mi")]
 position = Vector2(-56, 167)
 
+[node name="DeadBodyArea2" parent="ArmL" unique_id=1173972927 instance=ExtResource("3_an7mi")]
+position = Vector2(-5, 160)
+
 [node name="ArmR" type="RigidBody2D" parent="." unique_id=1724598728]
 position = Vector2(136, -352)
 disable_mode = 1
@@ -153,6 +174,9 @@ shape = SubResource("RectangleShape2D_q3fw5")
 
 [node name="DeadBodyArea" parent="ArmR" unique_id=1126849527 instance=ExtResource("3_an7mi")]
 position = Vector2(58, 171)
+
+[node name="DeadBodyArea2" parent="ArmR" unique_id=157173664 instance=ExtResource("3_an7mi")]
+position = Vector2(-6, 171)
 
 [node name="LegL" type="RigidBody2D" parent="." unique_id=1263340492]
 position = Vector2(-141, 259)
@@ -182,6 +206,9 @@ shape = SubResource("RectangleShape2D_uqjs3")
 [node name="DeadBodyArea" parent="LegL" unique_id=458102414 instance=ExtResource("3_an7mi")]
 position = Vector2(101, -106)
 
+[node name="DeadBodyArea2" parent="LegL" unique_id=1624407665 instance=ExtResource("3_an7mi")]
+position = Vector2(113, -172)
+
 [node name="LegR" type="RigidBody2D" parent="." unique_id=74409102]
 position = Vector2(-60, 259)
 collision_layer = 4
@@ -209,6 +236,9 @@ shape = SubResource("RectangleShape2D_an7mi")
 [node name="DeadBodyArea" parent="LegR" unique_id=297031022 instance=ExtResource("3_an7mi")]
 position = Vector2(101, -106)
 
+[node name="DeadBodyArea2" parent="LegR" unique_id=1496893472 instance=ExtResource("3_an7mi")]
+position = Vector2(101, -172)
+
 [node name="PinJoints" type="Node2D" parent="." unique_id=516469386]
 
 [node name="PinJoint2D" type="PinJoint2D" parent="PinJoints" unique_id=750117865]
@@ -235,3 +265,8 @@ node_b = NodePath("../../Torso")
 position = Vector2(35, -173)
 node_a = NodePath("../../LegR")
 node_b = NodePath("../../Torso")
+
+[node name="Timer" type="Timer" parent="." unique_id=1184253502]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

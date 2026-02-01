@@ -191,6 +191,7 @@ position = Vector2(1408, 856)
 
 [node name="Body" parent="." unique_id=1811897074 instance=ExtResource("2_00vsl")]
 position = Vector2(176, 904)
+chosen = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
@@ -301,7 +302,7 @@ polygon = PackedVector2Array(1696, 816, 2400, 808, 2400, 1024, 1688, 1032)
 position = Vector2(1984, 248)
 
 [node name="Body2" parent="." unique_id=289655189 instance=ExtResource("2_00vsl")]
-position = Vector2(1248, 888)
+position = Vector2(1272, 744)
 
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
