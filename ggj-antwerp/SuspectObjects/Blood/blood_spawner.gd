@@ -7,18 +7,13 @@ const BLOOD_STAIN = preload("uid://ch4fhu50xyyeq")
 
 func _ready():
 	randomize()
-	for i in range(10):
-		spawn_blood_stain(true)
-	for j in range(5):
-		spawn_blood_stain(false)
+	spawn_progression_manager()
 	for polygon in wall_polygons:
 		polygon.visible = false
 	for polygon in floor_polygons:
 		polygon.visible = false
 
-
 func spawn_blood_stain(wall : bool):
-	
 	var polygon_to_spawn : Polygon2D
 	if wall:
 		polygon_to_spawn = wall_polygons.pick_random()
@@ -31,3 +26,10 @@ func spawn_blood_stain(wall : bool):
 	spawned_stain.init_blood(wall)
 	spawned_stain.position = spawn_point
 	add_child(spawned_stain)
+
+func spawn_progression_manager():
+	var number_stains := 2 + ((globals.level - 1) * 3)
+	for i in range(number_stains):
+		spawn_blood_stain(true)
+	for j in range(number_stains):
+		spawn_blood_stain(false)

@@ -143,6 +143,7 @@ libraries/ = SubResource("AnimationLibrary_xpme3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1171846707]
 stream = ExtResource("5_5pljo")
+volume_db = -23.436
 autoplay = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]

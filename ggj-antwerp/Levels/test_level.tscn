@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://yqfc3oj0n4dr" path="res://Levels/level.gd" id="1_4k50d"]
 [ext_resource type="PackedScene" uid="uid://bguakiop7e1g6" path="res://RoomProps/Cupboard/cupboard.tscn" id="1_ormqy"]
-[ext_resource type="PackedScene" uid="uid://cbg6ind5qhoef" path="res://SuspectObjects/Body/body.tscn" id="2_00vsl"]
 [ext_resource type="Texture2D" uid="uid://b063ombnqrg16" path="res://Background/background_art.JPG" id="2_3158n"]
 [ext_resource type="Texture2D" uid="uid://d3p2bt1lm7146" path="res://Background/conceptartver2.jpg" id="3_lrol0"]
 [ext_resource type="PackedScene" uid="uid://cpvhaerxj7c5v" path="res://RoomProps/SmallCupboard/small_cupboard.tscn" id="4_i4ak4"]
@@ -151,10 +150,67 @@ _data = {
 &"raise_platter": SubResource("Animation_dkv23")
 }
 
+[sub_resource type="Animation" id="Animation_cn5b1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lrol0"]
+resource_name = "level_ended"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i45ex"]
+resource_name = "level_start"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ouwm7"]
+_data = {
+&"RESET": SubResource("Animation_cn5b1"),
+&"level_ended": SubResource("Animation_lrol0"),
+&"level_start": SubResource("Animation_i45ex")
+}
+
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
 CURSOR_CLICK_DURATION = 0.1
 metadata/_edit_vertical_guides_ = [2216.0, -220.0]
+metadata/_edit_horizontal_guides_ = [880.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2096200054]
 position = Vector2(-219, 1)
@@ -217,9 +273,6 @@ position = Vector2(184, 297)
 
 [node name="SmallCupboard" parent="." unique_id=152157778 instance=ExtResource("4_i4ak4")]
 position = Vector2(8, 640)
-
-[node name="Body" parent="." unique_id=1811897074 instance=ExtResource("2_00vsl")]
-position = Vector2(176, 904)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
@@ -311,9 +364,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -744.0
+offset_left = -288.0
 offset_top = -554.00024
-offset_right = -520.0
+offset_right = -64.0
 offset_bottom = -322.00024
 grow_horizontal = 0
 grow_vertical = 0
@@ -322,6 +375,26 @@ grow_vertical = 0
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
 
+[node name="EndColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=18978606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="LampColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=1009315460]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0.05882353, 0.44705883)
+
 [node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
 
 [node name="ConceptArt" type="Sprite2D" parent="." unique_id=21262659]
@@ -329,11 +402,13 @@ visible = false
 position = Vector2(997, 541)
 texture = ExtResource("3_lrol0")
 
-[node name="Body2" parent="." unique_id=289655189 instance=ExtResource("2_00vsl")]
-position = Vector2(1272, 744)
+[node name="LevelAnimations" type="AnimationPlayer" parent="." unique_id=1312470742]
+libraries/ = SubResource("AnimationLibrary_ouwm7")
+autoplay = &"level_start"
 
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/RopeButton" to="." method="_on_rope_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Platter/BellButton" to="." method="_on_rope_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Platter/BellButton" to="." method="_on_bell_button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="LevelAnimations" to="." method="_on_level_animations_animation_finished"]

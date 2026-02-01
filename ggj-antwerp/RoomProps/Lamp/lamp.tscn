@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbklm8wlq8pm5"]
 
-[ext_resource type="Script" uid="uid://c2m0dgbas35ak" path="res://RoomProps/roomprops.gd" id="1_16v5d"]
+[ext_resource type="Script" uid="uid://busvo58l4r06b" path="res://RoomProps/Lamp/lamp.gd" id="1_16v5d"]
 [ext_resource type="Texture2D" uid="uid://ls2ydv2e5kru" path="res://RoomProps/Lamp/lamp_off.PNG" id="2_vj7tg"]
 [ext_resource type="Texture2D" uid="uid://cvopfohlebi7d" path="res://RoomProps/Lamp/lamp_on.PNG" id="3_ch4j0"]
 
