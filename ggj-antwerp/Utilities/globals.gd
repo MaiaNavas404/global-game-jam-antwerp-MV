@@ -9,3 +9,5 @@ var current_item : Items = Items.NONE
 signal lamp_state_changed(state : bool)
 
 var level := 1
+var level_ended := false
+var active_object_count := 0

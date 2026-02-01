@@ -4,3 +4,5 @@
 
 [node name="BloodSpawner" type="Node2D" unique_id=1721568591]
 script = ExtResource("1_6v3px")
+
+[node name="SpawnedBlood" type="Node2D" parent="." unique_id=1363895603]
