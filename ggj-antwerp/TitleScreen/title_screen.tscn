@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dbdev5o8dh8ar"]
+[gd_scene format=3 uid="uid://b012asltdmmfq"]
 
+[ext_resource type="Script" uid="uid://jwpcf868ske0" path="res://TitleScreen/title_screen.gd" id="1_iym82"]
 [ext_resource type="AudioStream" uid="uid://36b1um1ho7fw" path="res://SFX/Music/title_theme.mp3" id="1_j0m2k"]
 [ext_resource type="Texture2D" uid="uid://cy18aq66aiy7s" path="res://TitleScreen/title_screen.JPG" id="2_iym82"]
 [ext_resource type="Texture2D" uid="uid://dkvqwd0q6inuk" path="res://TitleScreen/start_button.PNG" id="3_qp23m"]
-[ext_resource type="Texture2D" uid="uid://c2t6yte3cymdr" path="res://TitleScreen/frame1.PNG" id="4_cqf5v"]
 [ext_resource type="Texture2D" uid="uid://xmic3r5d2yo7" path="res://TitleScreen/frame2.PNG" id="5_f424p"]
 [ext_resource type="Texture2D" uid="uid://uknl7pnfiph0" path="res://TitleScreen/frame3.PNG" id="6_x53nb"]
 [ext_resource type="Texture2D" uid="uid://djfsmwero6hig" path="res://TitleScreen/frame4.PNG" id="7_r64nw"]
@@ -11,24 +11,94 @@
 [ext_resource type="Texture2D" uid="uid://cgxtsy2a2a7qa" path="res://TitleScreen/frame6.PNG" id="9_ksn83"]
 [ext_resource type="AudioStream" uid="uid://cy2ygmbrdlq3c" path="res://SFX/start_button_stab.mp3" id="10_iym82"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_yrf2f"]
-frames = 6
-one_shot = true
-speed_scale = 0.8
-frame_0/texture = ExtResource("4_cqf5v")
-frame_0/duration = 0.1
-frame_1/texture = ExtResource("5_f424p")
-frame_1/duration = 0.1
-frame_2/texture = ExtResource("6_x53nb")
-frame_2/duration = 0.1
-frame_3/texture = ExtResource("7_r64nw")
-frame_3/duration = 0.1
-frame_4/texture = ExtResource("8_fhfdr")
-frame_4/duration = 0.1
-frame_5/texture = ExtResource("9_ksn83")
-frame_5/duration = 0.1
+[sub_resource type="Animation" id="Animation_qp23m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureButton:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qp23m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureButton/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cqf5v"]
+resource_name = "pressed"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureButton:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09999998, 0.19999999, 0.29999998, 0.39999998, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_qp23m"), ExtResource("5_f424p"), ExtResource("6_x53nb"), ExtResource("7_r64nw"), ExtResource("8_fhfdr"), ExtResource("9_ksn83")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureButton/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f424p"]
+_data = {
+&"RESET": SubResource("Animation_qp23m"),
+&"pressed": SubResource("Animation_cqf5v")
+}
 
 [node name="title_screen" type="Node2D" unique_id=1513081905]
+script = ExtResource("1_iym82")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1437310236]
 stream = ExtResource("1_j0m2k")
@@ -40,7 +110,9 @@ parameters/looping = true
 texture = ExtResource("2_iym82")
 centered = false
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=415981680]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=916111262]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer" unique_id=415981680]
 offset_left = 206.0
 offset_top = 377.0
 offset_right = 919.0
@@ -49,8 +121,22 @@ toggle_mode = true
 action_mode = 0
 button_mask = 3
 texture_normal = ExtResource("3_qp23m")
-texture_pressed = SubResource("AnimatedTexture_yrf2f")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextureButton" unique_id=1900296345]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/TextureButton" unique_id=1900296345]
 stream = ExtResource("10_iym82")
 volume_db = -5.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2051693311]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=797659191]
+libraries/ = SubResource("AnimationLibrary_f424p")
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
