@@ -23,6 +23,8 @@ globals="*uid://3t1h0aeqo3pe"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [global_group]
 

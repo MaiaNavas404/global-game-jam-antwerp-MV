@@ -11,6 +11,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("click"):
+		$SpongeArea.monitoring = true
+		$SpongeArea.monitorable = true
+	else:
+		$SpongeArea.monitoring = false
+		$SpongeArea.monitorable = false
 	if globals.current_item == globals.Items.SPONGE:
 		position = get_global_mouse_position()
 		if is_disabled:

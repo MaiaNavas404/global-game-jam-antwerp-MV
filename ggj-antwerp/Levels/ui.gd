@@ -12,6 +12,7 @@ var platter_sprites := [preload("uid://ca3cap763d6l2"), preload("uid://vfkiioea8
 
 func _on_call_button_pressed() -> void:
 	animation_player.play("call")
+	$Control/CallButton/AudioStreamPlayer.play()
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

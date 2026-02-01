@@ -20,7 +20,7 @@ const SPONGE = preload("uid://cw66wgv4br3vm")
 var number_of_bodies : int
 var stain_points := 10
 var body_points := 50
-var active_object_points := 10
+var active_object_points := 5
 var total_score : float = 0.0
 var player_score : float = 0.0
 @onready var score_label: Label = $CanvasLayer/Control/Stats/Score
@@ -32,8 +32,12 @@ const ELEVATOR_ATLAS := [preload("res://Score/ProgressionCutscene/level1_elevato
 preload("res://Score/ProgressionCutscene/level3_elevator.png"),preload("res://Score/ProgressionCutscene/level4_elevator.png"), 
 preload("res://Score/ProgressionCutscene/level5_elevator.png"), preload("res://Score/ProgressionCutscene/level6_elevator.png"),
 preload("res://Score/ProgressionCutscene/level7_elevator.png"), preload("res://Score/ProgressionCutscene/level8_elevator.png"),
-preload("res://Score/ProgressionCutscene/level9_elevator.png")]
+preload("res://Score/ProgressionCutscene/level9_elevator.png"), preload("res://Score/ProgressionCutscene/level10_elevator.png"),
+preload("res://Score/ProgressionCutscene/level11_elevator.png"), preload("res://Score/ProgressionCutscene/level12_elevator.png"),
+preload("res://Score/ProgressionCutscene/level13_elevator.png")]
 var lost := false
+const telephone_sfx = preload("uid://b0ce57svl451y")
+
 
 var current_cursor_state := globals.Items.SPONGE:
 	set(value):
@@ -43,7 +47,10 @@ var cursor_click_timer : Timer
 var hotspot := Vector2(40, 40)
 
 func _ready():
-	print(globals.level)
+	if globals.level != 13:
+		level_animation.play("level_start")
+	else:
+		level_animation.play("level_start_13")
 	globals.active_object_count = 0
 	stats.visible = false
 	cop_bg_color.visible = false
@@ -59,6 +66,7 @@ func _ready():
 	cursor_click_timer.timeout.connect(on_click_timer_end)
 	globals.lamp_state_changed.connect(on_lamp_state_changed)
 	randomize()
+	on_lamp_state_changed(false)
 	body_spawner()
 	total_score_calculator()
 
@@ -69,7 +77,10 @@ func total_score_calculator():
 	
 
 func body_spawner():
-	number_of_bodies = int(globals.level/2)
+	if globals.level < 5:
+		number_of_bodies = int(globals.level/2)
+	else:
+		number_of_bodies = 2 + globals.level - 4
 	var spawn_area_min : float = camera.bounds.x + 20
 	var spawn_area_max : float = camera.bounds.y + 1920 - 20
 	var spawn_height := 880
@@ -78,7 +89,6 @@ func body_spawner():
 		var spawn_position := Vector2(randf_range(spawn_area_min, spawn_area_max), spawn_height)
 		var spawned_body = BODY.instantiate()
 		spawned_body.position = spawn_position
-		
 		bodies.add_child(spawned_body)
 
 func _physics_process(delta: float) -> void:
@@ -101,7 +111,6 @@ func _on_sponge_button_pressed() -> void:
 	animation_player.play("hide_platter")
 
 func on_state_changed():
-	
 	if globals.current_item == globals.Items.NONE:
 		Input.set_custom_mouse_cursor(cursor_idle_sprite, 0, hotspot)
 	elif globals.current_item == globals.Items.SPONGE:
@@ -132,9 +141,14 @@ func _on_bell_button_pressed() -> void:
 	
 
 func play_lift_animation(delta):
+	
 	var frame_width := 1004
 	var lift_texture: TextureRect = $CanvasLayer/Control/LiftTexture
 	lift_texture.texture.atlas = ELEVATOR_ATLAS[globals.level-1]
+	if globals.level == 13:
+		var frame_height := 592
+		lift_texture.texture.set_region(Rect2((lift_animation_phase % 8) * frame_width, (lift_animation_phase / 8) * frame_height, frame_width, frame_height))
+		return
 	lift_texture.texture.set_region(Rect2(lift_animation_phase * frame_width, 0, frame_width, 0))
 	
 
@@ -162,7 +176,9 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		score_label.text = "Score: " + str(int(player_score)) + "/" + str(int(total_score))
 		var message_label = stats.get_node("Message")
 		var cop_texture_region : Rect2
-		if player_score / total_score >= 0.6:
+		if player_score == total_score:
+			message_label.text = "PERFECT!!!"
+		elif player_score / total_score >= 0.6:
 			message_label.text = "Good Job!"
 			cop_texture_region = Rect2(cop_face_frame_width, 0, cop_face_frame_width, 0)
 		elif player_score / total_score >= 0.2:

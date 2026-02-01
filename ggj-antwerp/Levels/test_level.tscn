@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cnl6tm1uyd2ef" path="res://Levels/ui.gd" id="10_dkv23"]
 [ext_resource type="Texture2D" uid="uid://ca3cap763d6l2" path="res://UI/UI_platter.PNG" id="11_lx7qo"]
 [ext_resource type="Texture2D" uid="uid://n26t4i0pqk5p" path="res://UI/phone_ringing_spritesheet.png" id="11_x458k"]
+[ext_resource type="AudioStream" uid="uid://b0ce57svl451y" path="res://SFX/Telephone.wav" id="12_k7ebw"]
 [ext_resource type="Theme" uid="uid://dms6ae12htitg" path="res://UI/new_theme.tres" id="13_524xy"]
 [ext_resource type="Texture2D" uid="uid://cks0s2ow33l2g" path="res://Score/ProgressionCutscene/frame0.PNG" id="13_y77ci"]
 [ext_resource type="PackedScene" uid="uid://c4yklctynysay" path="res://RoomProps/Window/window.tscn" id="14_lrol0"]
@@ -169,7 +170,7 @@ region = Rect2(0, 0, 763, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7ebw"]
 atlas = ExtResource("15_7hwld")
-region = Rect2(0, 0, 1004, 0)
+region = Rect2(0, 0, 1004, 592)
 
 [sub_resource type="Animation" id="Animation_cn5b1"]
 length = 0.001
@@ -375,6 +376,95 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/EndColor2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_k7ebw"]
+resource_name = "level_start_13"
+length = 5.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/EndColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.4000006, 5.1000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:lift_animation_phase")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8000001, 1.9, 2, 2.1000001, 2.2, 2.3, 2.4, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:lift_animation_playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/LiftTexture:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.6999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/EndColor2:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2.8, 3.6999998, 4.4000006, 5.1000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/EndColor2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_524xy"]
 resource_name = "transition"
@@ -446,6 +536,7 @@ _data = {
 &"RESET": SubResource("Animation_cn5b1"),
 &"level_ended": SubResource("Animation_lrol0"),
 &"level_start": SubResource("Animation_i45ex"),
+&"level_start_13": SubResource("Animation_k7ebw"),
 &"transition": SubResource("Animation_524xy")
 }
 
@@ -470,11 +561,17 @@ scale = Vector2(1.0376925, 1.0376924)
 texture = ExtResource("8_7e6fp")
 
 [node name="BloodSpawner" parent="." unique_id=1721568591 node_paths=PackedStringArray("wall_polygons", "floor_polygons") instance=ExtResource("14_x458k")]
-wall_polygons = [NodePath("Polygon2D"), NodePath("Polygon2D3"), NodePath("Polygon2D4")]
-floor_polygons = [NodePath("Polygon2D2"), NodePath("Polygon2D5")]
+wall_polygons = [NodePath("Polygon2D"), NodePath("Polygon2D3"), NodePath("Polygon2D4"), NodePath("Polygon2D7"), NodePath("Polygon2D8")]
+floor_polygons = [NodePath("Polygon2D2"), NodePath("Polygon2D5"), NodePath("Polygon2D6")]
 
 [node name="Polygon2D" type="Polygon2D" parent="BloodSpawner" unique_id=1547162698]
-polygon = PackedVector2Array(928, 56, 1208, 56, 1216, 360, 920, 368)
+polygon = PackedVector2Array(928, 56, 1352, 64, 1352, 376, 936, 368)
+
+[node name="Polygon2D7" type="Polygon2D" parent="BloodSpawner" unique_id=447180438]
+polygon = PackedVector2Array(1416, 16, 2168, 16, 2168, 96, 1416, 96)
+
+[node name="Polygon2D8" type="Polygon2D" parent="BloodSpawner" unique_id=95518590]
+polygon = PackedVector2Array(1944, 120, 2144, 120, 2152, 816, 1944, 824)
 
 [node name="Polygon2D3" type="Polygon2D" parent="BloodSpawner" unique_id=1023494314]
 polygon = PackedVector2Array(288, 576, 1184, 568, 1184, 664, 288, 656)
@@ -486,7 +583,10 @@ polygon = PackedVector2Array(304, 720, 1040, 720, 1040, 848, 312, 832)
 polygon = PackedVector2Array(-168, 920, 1048, 928, 1048, 1032, -160, 1024)
 
 [node name="Polygon2D5" type="Polygon2D" parent="BloodSpawner" unique_id=221296490]
-polygon = PackedVector2Array(1800, 896, 2128, 896, 2128, 1016, 1800, 1016)
+polygon = PackedVector2Array(1352, 880, 2128, 880, 2128, 1016, 1352, 1008)
+
+[node name="Polygon2D6" type="Polygon2D" parent="BloodSpawner" unique_id=897907102]
+polygon = PackedVector2Array(376, 440, 1072, 440, 1072, 480, 368, 480)
 
 [node name="Cupboard" parent="." unique_id=557903057 instance=ExtResource("1_ormqy")]
 position = Vector2(1648, 464)
@@ -556,6 +656,10 @@ grow_horizontal = 0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_lrol0")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control/CallButton" unique_id=829663317]
+stream = ExtResource("12_k7ebw")
+volume_db = -22.72
+
 [node name="Platter" type="TextureRect" parent="CanvasLayer/Control" unique_id=235565738]
 layout_mode = 1
 anchors_preset = 3
@@ -563,10 +667,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1127.0
-offset_top = 1112.0
-offset_right = 1920.0
-offset_bottom = 1682.0002
+offset_left = -793.0
+offset_top = 32.0
+offset_bottom = 602.00024
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("11_lx7qo")
@@ -621,6 +724,7 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
 
 [node name="LampColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=1009315460]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -631,6 +735,7 @@ mouse_filter = 2
 color = Color(0, 0, 0.05882353, 0.44705883)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1333068000]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -640,6 +745,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="CopBGColor" type="ColorRect" parent="CanvasLayer/Control" unique_id=526270697]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -649,6 +755,7 @@ grow_vertical = 2
 color = Color(0.08061991, 0.07476207, 0.1296277, 0.57254905)
 
 [node name="Stats" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=2135337708]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -722,6 +829,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="EndColor2" type="ColorRect" parent="CanvasLayer/Control" unique_id=187335723]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -738,7 +846,6 @@ texture = ExtResource("3_lrol0")
 
 [node name="LevelAnimations" type="AnimationPlayer" parent="." unique_id=1312470742]
 libraries/ = SubResource("AnimationLibrary_ouwm7")
-autoplay = &"level_start"
 
 [node name="Bodies" type="Node2D" parent="." unique_id=243719347]
 
