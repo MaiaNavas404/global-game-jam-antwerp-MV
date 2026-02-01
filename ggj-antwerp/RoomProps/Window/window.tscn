@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://duvm0hpubniyj" path="res://RoomProps/Window/window.gd" id="1_wlvot"]
 [ext_resource type="Texture2D" uid="uid://e2bsrndpyhm2" path="res://RoomProps/Curtain/curtain_open.PNG" id="3_n64dq"]
 [ext_resource type="Texture2D" uid="uid://by5adplddb6q4" path="res://RoomProps/Curtain/curtain_close_spritesheet.png" id="4_5pljo"]
+[ext_resource type="AudioStream" uid="uid://catbws142q88g" path="res://SFX/window_rain_loop.mp3" id="5_5pljo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cbtd"]
 size = Vector2(1120, 392)
@@ -139,5 +140,9 @@ sprite_frames = SubResource("SpriteFrames_coqbg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=699748515]
 libraries/ = SubResource("AnimationLibrary_xpme3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1171846707]
+stream = ExtResource("5_5pljo")
+autoplay = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]

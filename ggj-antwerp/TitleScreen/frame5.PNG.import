@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brpm2cow3xjgy"
-path="res://.godot/imported/window_spritesheet.PNG-64a29e683774511c4b4613f6c9140a59.ctex"
+uid="uid://cdi1a1k5lfje5"
+path="res://.godot/imported/frame5.PNG-c0a9ced40c694429687ce58381c06b00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RoomProps/Window/window_spritesheet.PNG"
-dest_files=["res://.godot/imported/window_spritesheet.PNG-64a29e683774511c4b4613f6c9140a59.ctex"]
+source_file="res://TitleScreen/frame5.PNG"
+dest_files=["res://.godot/imported/frame5.PNG-c0a9ced40c694429687ce58381c06b00.ctex"]
 
 [params]
 
