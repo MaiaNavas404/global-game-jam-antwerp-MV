@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c340jps8ap1g2"]
 
-[ext_resource type="Texture2D" uid="uid://brpm2cow3xjgy" path="res://RoomProps/Window/window_spritesheet.PNG" id="1_35fqm"]
+[ext_resource type="Texture2D" uid="uid://brpm2cow3xjgy" path="res://RoomProps/Window/window_spritesheet.png" id="1_35fqm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vukk"]
 atlas = ExtResource("1_35fqm")
@@ -97,6 +97,8 @@ animations = [{
 [node name="Node2D" type="Node2D" unique_id=1607659450]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=24140804]
+position = Vector2(238.88766, 26.500051)
+scale = Vector2(1.0028089, 1.0028089)
 sprite_frames = SubResource("SpriteFrames_fsnla")
 autoplay = "default"
 frame_progress = 0.2134456

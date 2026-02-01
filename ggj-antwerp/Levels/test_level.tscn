@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bguakiop7e1g6" path="res://RoomProps/Cupboard/cupboard.tscn" id="1_ormqy"]
 [ext_resource type="PackedScene" uid="uid://cbg6ind5qhoef" path="res://SuspectObjects/Body/body.tscn" id="2_00vsl"]
 [ext_resource type="Texture2D" uid="uid://b063ombnqrg16" path="res://Background/background_art.JPG" id="2_3158n"]
+[ext_resource type="Texture2D" uid="uid://d3p2bt1lm7146" path="res://Background/conceptartver2.jpg" id="3_lrol0"]
 [ext_resource type="PackedScene" uid="uid://cpvhaerxj7c5v" path="res://RoomProps/SmallCupboard/small_cupboard.tscn" id="4_i4ak4"]
 [ext_resource type="Script" uid="uid://e1m7euobwhi0" path="res://Levels/camera.gd" id="6_pvdih"]
 [ext_resource type="PackedScene" uid="uid://bbklm8wlq8pm5" path="res://RoomProps/Lamp/lamp.tscn" id="6_ub4j8"]
@@ -153,17 +154,45 @@ _data = {
 [node name="TestLevel" type="Node2D" unique_id=954476652]
 script = ExtResource("1_4k50d")
 CURSOR_CLICK_DURATION = 0.1
-metadata/_edit_vertical_guides_ = [2432.0]
+metadata/_edit_vertical_guides_ = [2216.0, -220.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2096200054]
+[node name="Background" type="Sprite2D" parent="." unique_id=2096200054]
+position = Vector2(-219, 1)
 texture = ExtResource("2_3158n")
 centered = false
 
+[node name="Window" parent="." unique_id=1269573547 instance=ExtResource("14_lrol0")]
+position = Vector2(219, 184)
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=916855565]
+position = Vector2(768, 575.00006)
+scale = Vector2(1.0376925, 1.0376924)
+texture = ExtResource("8_7e6fp")
+
+[node name="BloodSpawner" parent="." unique_id=1721568591 node_paths=PackedStringArray("wall_polygons", "floor_polygons") instance=ExtResource("14_x458k")]
+wall_polygons = [NodePath("Polygon2D"), NodePath("Polygon2D3"), NodePath("Polygon2D4")]
+floor_polygons = [NodePath("Polygon2D2"), NodePath("Polygon2D5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="BloodSpawner" unique_id=1547162698]
+polygon = PackedVector2Array(928, 56, 1208, 56, 1216, 360, 920, 368)
+
+[node name="Polygon2D3" type="Polygon2D" parent="BloodSpawner" unique_id=1023494314]
+polygon = PackedVector2Array(288, 576, 1184, 568, 1184, 664, 288, 656)
+
+[node name="Polygon2D4" type="Polygon2D" parent="BloodSpawner" unique_id=646306848]
+polygon = PackedVector2Array(304, 720, 1040, 720, 1040, 848, 312, 832)
+
+[node name="Polygon2D2" type="Polygon2D" parent="BloodSpawner" unique_id=1626194439]
+polygon = PackedVector2Array(-168, 920, 1048, 928, 1048, 1032, -160, 1024)
+
+[node name="Polygon2D5" type="Polygon2D" parent="BloodSpawner" unique_id=221296490]
+polygon = PackedVector2Array(1800, 896, 2128, 896, 2128, 1016, 1800, 1016)
+
 [node name="Cupboard" parent="." unique_id=557903057 instance=ExtResource("1_ormqy")]
-position = Vector2(704, 688)
+position = Vector2(1543, 464)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1874029759]
-position = Vector2(8, 1080)
+position = Vector2(-216, 1064)
 collision_layer = 32
 collision_mask = 4
 
@@ -184,19 +213,18 @@ position = Vector2(-16, -584)
 shape = SubResource("RectangleShape2D_x458k")
 
 [node name="Lamp" parent="." unique_id=87523742 instance=ExtResource("6_ub4j8")]
-position = Vector2(1504, 522)
+position = Vector2(184, 297)
 
 [node name="SmallCupboard" parent="." unique_id=152157778 instance=ExtResource("4_i4ak4")]
-position = Vector2(1408, 856)
+position = Vector2(8, 640)
 
 [node name="Body" parent="." unique_id=1811897074 instance=ExtResource("2_00vsl")]
 position = Vector2(176, 904)
-chosen = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864356312 node_paths=PackedStringArray("left_pan_marker", "right_pan_marker")]
 anchor_mode = 0
 script = ExtResource("6_pvdih")
-bounds = Vector2(0, 2432)
+bounds = Vector2(-220, 2216)
 left_pan_marker = NodePath("PanL")
 right_pan_marker = NodePath("PanR")
 
@@ -205,10 +233,6 @@ position = Vector2(64, 0)
 
 [node name="PanR" type="Marker2D" parent="Camera2D" unique_id=762008711]
 position = Vector2(1856, 0)
-
-[node name="Bed" type="Sprite2D" parent="." unique_id=916855565]
-position = Vector2(3040, 760)
-texture = ExtResource("8_7e6fp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649908782]
 script = ExtResource("10_dkv23")
@@ -279,27 +303,31 @@ offset_bottom = -322.00024
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="BellButton" type="Button" parent="CanvasLayer/Control/Platter" unique_id=276253687]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -744.0
+offset_top = -554.00024
+offset_right = -520.0
+offset_bottom = -322.00024
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=696881735]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_cn5b1")
 
 [node name="Sponge" parent="." unique_id=1263091895 instance=ExtResource("10_k8b6b")]
 
-[node name="BloodSpawner" parent="." unique_id=1721568591 node_paths=PackedStringArray("wall_polygons", "floor_polygons") instance=ExtResource("14_x458k")]
-wall_polygons = [NodePath("Polygon2D"), NodePath("Polygon2D3")]
-floor_polygons = [NodePath("Polygon2D2")]
-
-[node name="Polygon2D" type="Polygon2D" parent="BloodSpawner" unique_id=1547162698]
-polygon = PackedVector2Array(136, 56, 1024, 48, 1024, 272, 144, 264)
-
-[node name="Polygon2D3" type="Polygon2D" parent="BloodSpawner" unique_id=1023494314]
-polygon = PackedVector2Array(1336, 56, 2336, 56, 2336, 416, 1352, 408)
-
-[node name="Polygon2D2" type="Polygon2D" parent="BloodSpawner" unique_id=1626194439]
-polygon = PackedVector2Array(1696, 816, 2400, 808, 2400, 1024, 1688, 1032)
-
-[node name="Window" parent="." unique_id=1269573547 instance=ExtResource("14_lrol0")]
-position = Vector2(1984, 248)
+[node name="ConceptArt" type="Sprite2D" parent="." unique_id=21262659]
+visible = false
+position = Vector2(997, 541)
+texture = ExtResource("3_lrol0")
 
 [node name="Body2" parent="." unique_id=289655189 instance=ExtResource("2_00vsl")]
 position = Vector2(1272, 744)
@@ -307,4 +335,5 @@ position = Vector2(1272, 744)
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/RopeButton" to="." method="_on_rope_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Platter/BellButton" to="." method="_on_rope_button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]

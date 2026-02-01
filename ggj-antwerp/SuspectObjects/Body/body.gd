@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var chosen: bool
+
 var draggable := false
 var hidable : bool
 var is_hidden := false:
@@ -64,7 +64,7 @@ func _ready():
 				area.connect("mouse_entered", self._on_mouse_entered, CONNECT_APPEND_SOURCE_OBJECT)
 				area.connect("mouse_exited", self._on_mouse_exited, CONNECT_APPEND_SOURCE_OBJECT)
 				
-			
+	
 
 func _physics_process(delta: float) -> void:
 	hidable = check_hiding()
@@ -132,8 +132,3 @@ func _on_mouse_exited(area : Area2D) -> void:
 	if current_dragged_body_part == area.get_parent():
 		current_dragged_body_part = null
 	#draggable = false
-
-
-func _on_timer_timeout() -> void:
-	if chosen:
-		print(' hidden: ',is_hidden, ' dragging: ', dragging, ' overlap: ', check_overlapping_bodies(), ' hidable: ',check_hiding())

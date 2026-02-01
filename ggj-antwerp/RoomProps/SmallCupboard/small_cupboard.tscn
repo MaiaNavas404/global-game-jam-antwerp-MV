@@ -33,6 +33,7 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HidableArea" unique_id=704903901]
+visible = false
 shape = SubResource("RectangleShape2D_6s5yi")
 
 [node name="ClickableArea" type="Area2D" parent="." unique_id=170944405]
@@ -40,9 +41,11 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea" unique_id=2067615308 groups=["Disabled"]]
+visible = false
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_fsbb7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ClickableArea" unique_id=1933441644 groups=["Active"]]
+visible = false
 position = Vector2(204, 0)
 shape = SubResource("RectangleShape2D_xcs3w")

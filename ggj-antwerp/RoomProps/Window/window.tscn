@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://by5adplddb6q4" path="res://RoomProps/Curtain/curtain_close_spritesheet.png" id="4_5pljo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cbtd"]
-size = Vector2(832, 352)
+size = Vector2(1120, 392)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpme3"]
-size = Vector2(832, 352)
+size = Vector2(1120, 848)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpetw"]
 atlas = ExtResource("4_5pljo")
@@ -118,19 +118,23 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1593703708 groups=["Active"]]
+position = Vector2(144, 12)
 shape = SubResource("RectangleShape2D_3cbtd")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1087833781 groups=["Disabled"]]
+position = Vector2(144, 248)
 shape = SubResource("RectangleShape2D_xpme3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895764521 groups=["Active"]]
-position = Vector2(89.63794, 181.75)
-scale = Vector2(0.80589545, 0.80589545)
+visible = false
+position = Vector2(229.00006, 270.786)
+scale = Vector2(1.0199693, 1.0199692)
 texture = ExtResource("3_n64dq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=149802047 groups=["Disabled"]]
-position = Vector2(89.63794, 181.75)
-scale = Vector2(0.80589545, 0.80589545)
+visible = false
+position = Vector2(229.00006, 270.786)
+scale = Vector2(1.0199693, 1.0199692)
 sprite_frames = SubResource("SpriteFrames_coqbg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=699748515]
