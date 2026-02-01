@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b2eahbt5rkf0p"]
+
+[ext_resource type="AudioStream" uid="uid://36b1um1ho7fw" path="res://SFX/Music/title_theme.mp3" id="1_87k74"]
+
+[node name="title_soundtrack" type="Node2D" unique_id=1513081905]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1437310236]
+stream = ExtResource("1_87k74")
