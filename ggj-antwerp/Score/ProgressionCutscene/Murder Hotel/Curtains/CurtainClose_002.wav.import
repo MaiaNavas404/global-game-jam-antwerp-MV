@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d7y0kvahjotu"
+path="res://.godot/imported/CurtainClose_002.wav-4f50e18b963c8902a0d816601b2f7599.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Curtains/CurtainClose_002.wav"
+dest_files=["res://.godot/imported/CurtainClose_002.wav-4f50e18b963c8902a0d816601b2f7599.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

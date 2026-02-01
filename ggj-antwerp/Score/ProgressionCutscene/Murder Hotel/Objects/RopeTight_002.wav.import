@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5ltjurce1atm"
+path="res://.godot/imported/RopeTight_002.wav-29025d0c994e5cdd2822f55ccc00f848.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Objects/RopeTight_002.wav"
+dest_files=["res://.godot/imported/RopeTight_002.wav-29025d0c994e5cdd2822f55ccc00f848.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

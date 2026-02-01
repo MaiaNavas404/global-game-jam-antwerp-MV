@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dyjk5dyocerod"
+path="res://.godot/imported/CollisionBody_Closet_003.wav-f1c9c9a2405471fc5cec2ecd98712237.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Body/CollisionBody_Closet_003.wav"
+dest_files=["res://.godot/imported/CollisionBody_Closet_003.wav-f1c9c9a2405471fc5cec2ecd98712237.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

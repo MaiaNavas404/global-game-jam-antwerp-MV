@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c57sftgdomoen"
+path="res://.godot/imported/Cleaning_001.wav-f2b4487dd8b86fa4bcb4aefc7e77d66a.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Cleaning/Cleaning_001.wav"
+dest_files=["res://.godot/imported/Cleaning_001.wav-f2b4487dd8b86fa4bcb4aefc7e77d66a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

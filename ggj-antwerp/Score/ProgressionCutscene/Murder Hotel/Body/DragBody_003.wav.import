@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dl8cph4uu7gqk"
+path="res://.godot/imported/DragBody_003.wav-98d2025571cca586297dd43b4aa03f68.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Body/DragBody_003.wav"
+dest_files=["res://.godot/imported/DragBody_003.wav-98d2025571cca586297dd43b4aa03f68.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

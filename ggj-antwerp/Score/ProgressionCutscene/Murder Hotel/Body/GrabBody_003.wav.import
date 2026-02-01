@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dt7e3f4tha15p"
+path="res://.godot/imported/GrabBody_003.wav-2e71f0d9b87b63a6379db343fabc0b41.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Body/GrabBody_003.wav"
+dest_files=["res://.godot/imported/GrabBody_003.wav-2e71f0d9b87b63a6379db343fabc0b41.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

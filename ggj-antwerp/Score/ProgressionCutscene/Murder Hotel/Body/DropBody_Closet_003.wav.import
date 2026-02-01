@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cktrwd7dxwyiq"
+path="res://.godot/imported/DropBody_Closet_003.wav-77671ddc5d4c44a7184088a42cbb11c1.sample"
+
+[deps]
+
+source_file="res://Score/ProgressionCutscene/Murder Hotel/Body/DropBody_Closet_003.wav"
+dest_files=["res://.godot/imported/DropBody_Closet_003.wav-77671ddc5d4c44a7184088a42cbb11c1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
