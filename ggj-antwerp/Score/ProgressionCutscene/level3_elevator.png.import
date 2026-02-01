@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1afg5owjtmtf"
-path="res://.godot/imported/level2_elevator.png-d3c5e5dcb263e711590d5c5c4e99a1f1.ctex"
+uid="uid://csjw5bth5iuxs"
+path="res://.godot/imported/level3_elevator.png-21547c4a37af680d736f5d68c778ea3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Score/ProgressionCutscene/level2_elevator.png"
-dest_files=["res://.godot/imported/level2_elevator.png-d3c5e5dcb263e711590d5c5c4e99a1f1.ctex"]
+source_file="res://Score/ProgressionCutscene/level3_elevator.png"
+dest_files=["res://.godot/imported/level3_elevator.png-21547c4a37af680d736f5d68c778ea3b.ctex"]
 
 [params]
 
