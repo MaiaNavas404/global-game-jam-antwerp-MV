@@ -1,6 +1,7 @@
 extends Node2D
 
 var is_disabled := false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 3
