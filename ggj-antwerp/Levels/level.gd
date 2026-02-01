@@ -120,6 +120,7 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		get_tree().reload_current_scene()
 	elif anim_name == "level_ended":
 		stats.visible = true
+		$AudioStreamPlayer.stop()
 		var stains_left : int = blood_spawner.get_node("SpawnedBlood").get_child_count()
 		var bodies_left := 0
 		for body in bodies.get_children():
@@ -140,7 +141,7 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		elif player_score / total_score >= 0.0:
 			message_label.text = "Yeah No You're Going To Jail."
 		
-		print( player_score / total_score)
+	
 func on_lamp_state_changed(state : bool):
 	lamp_overlay.visible = !state
 

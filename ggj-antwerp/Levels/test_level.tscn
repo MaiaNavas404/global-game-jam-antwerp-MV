@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dp05qj6os7uia" path="res://Score/ProgressionCutscene/frame6.PNG" id="20_k7ebw"]
 [ext_resource type="Texture2D" uid="uid://bl4uidyw7k8uy" path="res://Score/ProgressionCutscene/frame7.PNG" id="21_6tabg"]
 [ext_resource type="Texture2D" uid="uid://dwpl1uqp3wb6f" path="res://Score/ProgressionCutscene/frame8.PNG" id="22_ag5ov"]
+[ext_resource type="AudioStream" uid="uid://b6tf38e2hb0la" path="res://SFX/Music/game_theme.mp3" id="24_qmhwg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ak4"]
 size = Vector2(2722, 20)
@@ -460,6 +461,7 @@ mouse_filter = 2
 color = Color(0, 0, 0.05882353, 0.44705883)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1333068000]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -532,6 +534,12 @@ autoplay = &"level_start"
 
 [node name="Bodies" type="Node2D" parent="." unique_id=243719347]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=69714004]
+stream = ExtResource("24_qmhwg")
+volume_db = -16.305
+autoplay = true
+parameters/looping = true
+
 [connection signal="pressed" from="CanvasLayer/Control/CallButton" to="CanvasLayer" method="_on_call_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/SpongeButton" to="." method="_on_sponge_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Platter/RopeButton" to="." method="_on_rope_button_pressed"]
@@ -539,3 +547,4 @@ autoplay = &"level_start"
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Control/Stats/Continue" to="." method="_on_continue_pressed"]
 [connection signal="animation_finished" from="LevelAnimations" to="." method="_on_level_animations_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

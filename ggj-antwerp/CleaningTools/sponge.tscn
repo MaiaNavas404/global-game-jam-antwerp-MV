@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bctl80hvn4aa6" path="res://CleaningTools/icon.svg" id="1_2wety"]
 [ext_resource type="Script" uid="uid://bmi8lx2rolbet" path="res://CleaningTools/sponge.gd" id="1_fwbe1"]
+[ext_resource type="AudioStream" uid="uid://cjba2f4t5ek3g" path="res://SFX/Cleaning_001.wav" id="3_2jxut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwbe1"]
 size = Vector2(73, 73)
@@ -21,3 +22,15 @@ shape = SubResource("RectangleShape2D_fwbe1")
 visible = false
 modulate = Color(0, 0.6179889, 0.35032612, 1)
 texture = ExtResource("1_2wety")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1388742540]
+stream = ExtResource("3_2jxut")
+volume_db = -11.493
+
+[node name="Timer" type="Timer" parent="." unique_id=102409802]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="SpongeArea" to="." method="_on_sponge_area_area_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

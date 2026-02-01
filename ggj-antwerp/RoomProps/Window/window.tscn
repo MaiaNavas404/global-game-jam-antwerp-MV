@@ -10,7 +10,7 @@
 size = Vector2(1120, 392)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpme3"]
-size = Vector2(1120, 848)
+size = Vector2(1120, 448)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpetw"]
 atlas = ExtResource("4_5pljo")
@@ -123,7 +123,7 @@ position = Vector2(144, 12)
 shape = SubResource("RectangleShape2D_3cbtd")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1087833781 groups=["Disabled"]]
-position = Vector2(144, 248)
+position = Vector2(144, 48)
 shape = SubResource("RectangleShape2D_xpme3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895764521 groups=["Active"]]
@@ -145,5 +145,6 @@ libraries/ = SubResource("AnimationLibrary_xpme3")
 stream = ExtResource("5_5pljo")
 volume_db = -23.436
 autoplay = true
+parameters/looping = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]
