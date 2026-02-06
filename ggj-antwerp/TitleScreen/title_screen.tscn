@@ -104,7 +104,6 @@ script = ExtResource("1_iym82")
 stream = ExtResource("1_j0m2k")
 volume_db = -15.556
 autoplay = true
-parameters/looping = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=594981427]
 texture = ExtResource("2_iym82")
@@ -138,5 +137,6 @@ color = Color(0, 0, 0, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=797659191]
 libraries/ = SubResource("AnimationLibrary_f424p")
 
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

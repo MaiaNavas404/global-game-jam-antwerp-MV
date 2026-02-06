@@ -157,7 +157,6 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 	
 	if anim_name == "transition":
 		globals.level += 1
-		print(globals.level)
 		if !lost:
 			if globals.level > 13:
 				get_tree().change_scene_to_file("res://TitleScreen/win_screen.tscn")
@@ -184,6 +183,7 @@ func _on_level_animations_animation_finished(anim_name: StringName) -> void:
 		var cop_texture_region : Rect2
 		if player_score == total_score:
 			message_label.text = "PERFECT!!!"
+			cop_texture_region = Rect2(cop_face_frame_width, 0, cop_face_frame_width, 0)
 		elif player_score / total_score >= 0.6:
 			message_label.text = "Good Job!"
 			cop_texture_region = Rect2(cop_face_frame_width, 0, cop_face_frame_width, 0)
@@ -205,3 +205,7 @@ func on_lamp_state_changed(state : bool):
 
 func _on_continue_pressed() -> void:
 	level_animation.play("transition")
+
+
+func _on_bgm_finished() -> void:
+	background_music.play()

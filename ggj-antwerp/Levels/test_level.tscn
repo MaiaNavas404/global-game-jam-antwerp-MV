@@ -910,7 +910,6 @@ libraries/ = SubResource("AnimationLibrary_ouwm7")
 stream = ExtResource("24_qmhwg")
 volume_db = -16.305
 autoplay = true
-parameters/looping = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=420565451]
 stream = ExtResource("25_y8lus")
@@ -923,4 +922,4 @@ volume_db = -12.749
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Control/Stats/Continue" to="." method="_on_continue_pressed"]
 [connection signal="animation_finished" from="LevelAnimations" to="." method="_on_level_animations_animation_finished"]
-[connection signal="finished" from="BGM" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]
